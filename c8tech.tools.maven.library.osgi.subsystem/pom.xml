@@ -1,0 +1,204 @@
+
+<!-- ==========================================================================  -->
+<!-- Copyright © 2015-2018 Cristiano Gavião, C8 Technology ME.                         -->
+<!--                                                                             -->
+<!-- All rights reserved. This program and the accompanying materials            -->
+<!-- are made available under the terms of the Eclipse Public License v1.0       -->
+<!-- which accompanies this distribution, and is available at                    -->
+<!-- http://www.eclipse.org/legal/epl-v10.html                                   -->
+<!--                                                                             -->
+<!-- Contributors:                                                               -->
+<!-- Cristiano Gavião (cvgaviao@c8tech.com.br)- initial API and implementation   -->
+<!-- ==========================================================================  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>br.com.c8tech.tools</groupId>
+        <artifactId>c8tech-tools-maven-pom</artifactId>
+        <version>0.5.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>c8tech.tools.maven.library.osgi.subsystem</artifactId>
+    <name>C8Tech Maven Tools : OSGi Subsystem Archive Generation Library</name>
+    <description>A library OSGi bundle that provides classes to support OSGi Subsystem handling.</description>
+    <packaging>takari-jar</packaging>
+
+    <!-- Due a maven limitation, this MUST be replicated to all children -->
+    <url>${c8tech.project.site.url}</url>
+    <scm>
+        <connection>${c8tech.scm.connection}</connection>
+        <developerConnection>${c8tech.scm.connection.dev}</developerConnection>
+        <url>${c8tech.scm.url}</url>
+        <tag>HEAD</tag>
+    </scm>
+    <distributionManagement>
+        <site>
+            <id>${c8tech.distribution.site.id}</id>
+            <name>${c8tech.distribution.site.name}</name>
+            <url>${c8tech.distribution.site.url}</url>
+        </site>
+    </distributionManagement>
+    <!-- end of per child setting -->
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Eclipse Public License v1.0</name>
+            <url>http://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>br.com.c8tech.tools</groupId>
+            <artifactId>c8tech.tools.maven.library.osgi.repoindex</artifactId>
+            <version>0.5.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.subsystem</groupId>
+            <artifactId>org.apache.aries.subsystem.api</artifactId>
+            <version>${version.aries.subsystems.api}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.osgi</groupId>
+                    <artifactId>org.osgi.annotation</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries</groupId>
+            <artifactId>org.apache.aries.util</artifactId>
+            <version>${version.aries.util}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.osgi</groupId>
+                    <artifactId>org.osgi.compendium</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.osgi</groupId>
+                    <artifactId>org.osgi.annotation</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.subsystem</groupId>
+            <artifactId>org.apache.aries.subsystem.core</artifactId>
+            <version>${version.aries.subsystems.core}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${version.maven-bundle}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <unpackBundle>true</unpackBundle>
+                        <supportedProjectTypes>
+                            <supportedProjectType>bundle</supportedProjectType>
+                            <supportedProjectType>jar</supportedProjectType>
+                            <supportedProjectType>takari-jar</supportedProjectType>
+                        </supportedProjectTypes>
+                        <instructions>
+                            <Export-Package>
+                                br.com.c8tech.tools.maven.osgi.lib.subsystem,
+                                br.com.c8tech.tools.maven.osgi.lib.subsystem.ut
+                            </Export-Package>
+                            <Bundle-Activator>br.com.c8tech.tools.maven.osgi.lib.subsystem.Activator</Bundle-Activator>
+                            <Private-Package>
+                            </Private-Package>
+                            <Import-Package>
+                                org.osgi.service.indexer.*,
+                                *;resolution:=optional
+                            </Import-Package>
+                            <Embed-Dependency>
+<!--                                 osgi.core;scope=provided; -->
+<!--                                 inline=org/osgi/framework/Version.class| -->
+<!--                                 org/osgi/resource/Requirement.class| -->
+<!--                                 org/osgi/framework/VersionRange.class, -->
+                                org.apache.aries.subsystem.api;scope=provided;inline=true,
+                                org.apache.aries.util;scope=provided;
+                                inline=org/apache/aries/util/IORuntimeException.class|
+                                org/apache/aries/util/ManifestHeaderUtils.class|
+                                org/apache/aries/util/VersionRange.class|
+                                org/apache/aries/util/filesystem/*.class|
+                                org/apache/aries/util/filesystem/impl/*.class|
+                                org/apache/aries/util/internal/MessageUtil.class|
+                                org/apache/aries/util/io/IOUtils.class|
+                                org/apache/aries/util/manifest/BundleManifest.class|
+                                org/apache/aries/util/manifest/Constants.class|
+                                org/apache/aries/util/manifest/ManifestHeaderProcessor.class|
+                                org/apache/aries/util/manifest/ManifestProcessor.class,
+                                org.apache.aries.subsystem.core;scope=provided;
+                                inline=org/apache/aries/subsystem/core/archive/*.class|
+                                org/apache/aries/subsystem/core/repository/RepositoryContent.class|
+                                org/apache/aries/subsystem/core/repository/Repository.class|
+                                org/apache/aries/subsystem/core/repository/ContentNamespace.class|
+                                org/apache/aries/subsystem/core/internal/ResourceHelper.class|
+                                org/apache/aries/subsystem/core/internal/OsgiIdentityCapability.class|
+                                org/apache/aries/subsystem/core/internal/BundleResource.class|
+                                org/apache/aries/subsystem/core/internal/AbstractRequirement.class|
+                                org/apache/aries/subsystem/core/internal/AbstractCapability.class|
+                                org/apache/aries/subsystem/core/capabilityset/SimpleFilter.class
+
+                            </Embed-Dependency>
+                        <!-- <Embed-Dependency> -->
+                        <!-- org.apache.aries.util;scope=provided;inline=true, -->
+                        <!-- org.apache.aries.subsystem.api;scope=provided;inline=true, -->
+                        <!-- org.apache.aries.subsystem.core;scope=provided;inline=true -->
+                        <!-- </Embed-Dependency> -->
+                            <_exportcontents>
+                                org.apache.aries.subsystem.core.archive,
+                                org.apache.aries.subsystem.core.capabilityset,
+                                org.apache.aries.subsystem.core.internal,
+                                org.osgi.service.subsystem;-split-package:=merge-first,
+                                org.apache.aries.util.manifest,
+                                org.apache.aries.util,
+                                org.apache.aries.util.filesystem,
+                                org.apache.aries.subsystem.core.repository,
+                                org.osgi.service.repository,
+                                org.apache.aries.subsystem
+                            </_exportcontents>
+                        </instructions>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>io.takari.maven.plugins</groupId>
+                    <artifactId>takari-lifecycle-plugin</artifactId>
+                    <extensions>true</extensions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>animal-sniffer-maven-plugin</artifactId>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+        </plugins>
+    </build>
+</project>
