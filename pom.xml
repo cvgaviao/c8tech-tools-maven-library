@@ -69,6 +69,7 @@
     <modules>
         <module>c8tech.tools.maven.library.mojo</module>
         <module>c8tech.tools.maven.library.osgi.subsystem</module>
+        <module>c8tech.tools.maven.library.osgi.repoindex</module>
     </modules>
 
     <licenses>

@@ -1,0 +1,25 @@
+<repo:resource>
+  <repo:capability namespace="osgi.identity">
+    <repo:attribute name="osgi.identity" value="org.example.k"/>
+    <repo:attribute name="type" value="osgi.bundle"/>
+    <repo:attribute name="version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.content">
+    <repo:attribute name="osgi.content" value="60b8a4694aa6e6f7977ac70b02d2c802294f14ea15277a4364044deff5766517"/>
+    <repo:attribute name="url" value="testdata/11-importservice.jar"/>
+    <repo:attribute name="size" type="Long" value="1118"/>
+    <repo:attribute name="mime" value="application/vnd.osgi.bundle"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.bundle">
+    <repo:attribute name="osgi.wiring.bundle" value="org.example.k"/>
+    <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.host">
+    <repo:attribute name="osgi.wiring.host" value="org.example.k"/>
+    <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:requirement namespace="osgi.service">
+    <repo:directive name="filter" value="(objectClass=org.example.a.A)"/>
+    <repo:directive name="effective" value="active"/>
+  </repo:requirement>
+</repo:resource>

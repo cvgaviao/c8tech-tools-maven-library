@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<repo:repository increment="0" name="empty" xmlns:repo="http://www.osgi.org/xmlns/repository/v1.0.0">
+</repo:repository>

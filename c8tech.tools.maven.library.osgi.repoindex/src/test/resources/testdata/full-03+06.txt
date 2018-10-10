@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<repo:repository increment="0" name="full-c+f" xmlns:repo="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <repo:resource>
+    <repo:capability namespace="osgi.identity">
+      <repo:attribute name="osgi.identity" value="org.example.c"/>
+      <repo:attribute name="type" value="osgi.bundle"/>
+      <repo:attribute name="version" type="Version" value="0.0.0"/>
+    </repo:capability>
+    <repo:capability namespace="osgi.content">
+      <repo:attribute name="osgi.content" value="805edded7fe1d6cd060347818257270277dfaa2a99bf747065da61639a89984e"/>
+      <repo:attribute name="url" value="testdata/03-export.jar"/>
+      <repo:attribute name="size" type="Long" value="1100"/>
+      <repo:attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </repo:capability>
+    <repo:capability namespace="osgi.wiring.bundle">
+      <repo:attribute name="osgi.wiring.bundle" value="org.example.c"/>
+      <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+    </repo:capability>
+    <repo:capability namespace="osgi.wiring.host">
+      <repo:attribute name="osgi.wiring.host" value="org.example.c"/>
+      <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+    </repo:capability>
+    <repo:capability namespace="osgi.wiring.package">
+      <repo:attribute name="osgi.wiring.package" value="org.example.a"/>
+      <repo:attribute name="version" type="Version" value="1.0.0"/>
+      <repo:attribute name="bundle-symbolic-name" value="org.example.c"/>
+      <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+    </repo:capability>
+  </repo:resource>
+  <repo:resource>
+    <repo:capability namespace="osgi.identity">
+      <repo:attribute name="osgi.identity" value="org.example.f"/>
+      <repo:attribute name="type" value="osgi.bundle"/>
+      <repo:attribute name="version" type="Version" value="0.0.0"/>
+    </repo:capability>
+    <repo:capability namespace="osgi.content">
+      <repo:attribute name="osgi.content" value="bc9acc2341bbebedff6213c6f581e6e9f4c03963f64e73f42c831c94a4251a01"/>
+      <repo:attribute name="url" value="testdata/06-requirebundle.jar"/>
+      <repo:attribute name="size" type="Long" value="1128"/>
+      <repo:attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </repo:capability>
+    <repo:capability namespace="osgi.wiring.bundle">
+      <repo:attribute name="osgi.wiring.bundle" value="org.example.f"/>
+      <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+    </repo:capability>
+    <repo:capability namespace="osgi.wiring.host">
+      <repo:attribute name="osgi.wiring.host" value="org.example.f"/>
+      <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+    </repo:capability>
+    <repo:requirement namespace="osgi.wiring.bundle">
+      <repo:directive name="filter" value="(&amp;(osgi.wiring.bundle=org.example.a)(bundle-version&gt;=3.0.0)(!(bundle-version&gt;=4.0.0)))"/>
+    </repo:requirement>
+  </repo:resource>
+</repo:repository>

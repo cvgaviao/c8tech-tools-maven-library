@@ -1,0 +1,24 @@
+<repo:resource>
+  <repo:capability namespace="osgi.identity">
+    <repo:attribute name="osgi.identity" value="org.example.nativecode"/>
+    <repo:attribute name="type" value="osgi.bundle"/>
+    <repo:attribute name="version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.content">
+    <repo:attribute name="osgi.content" value="2f3494a1c6ee1a61141381641657d89d4d63dcf64e3d237a294dcc4b1f7fbf5d"/>
+    <repo:attribute name="url" value="testdata/19-bundlenativecode.jar"/>
+    <repo:attribute name="size" type="Long" value="460"/>
+    <repo:attribute name="mime" value="application/vnd.osgi.bundle"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.bundle">
+    <repo:attribute name="osgi.wiring.bundle" value="org.example.nativecode"/>
+    <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.host">
+    <repo:attribute name="osgi.wiring.host" value="org.example.nativecode"/>
+    <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:requirement namespace="osgi.native">
+    <repo:directive name="filter" value="(|(&amp;(osgi.native.osname~=win32)(osgi.native.processor~=x86)(|(osgi.native.language~=en)(osgi.native.language~=se))(com.acme.windowing=win32))(&amp;(|(osgi.native.osname~=Windows95)(osgi.native.osname~=Windows98)(osgi.native.osname~=WindowsNT))(osgi.native.osversion&gt;=6.1.0)(!(osgi.native.osversion&gt;=7.0.0))(osgi.native.processor~=x86_64)))"/>
+  </repo:requirement>
+</repo:resource>

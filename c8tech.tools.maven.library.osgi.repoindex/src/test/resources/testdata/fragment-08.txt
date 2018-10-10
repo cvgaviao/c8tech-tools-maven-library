@@ -1,0 +1,16 @@
+<repo:resource>
+  <repo:capability namespace="osgi.identity">
+    <repo:attribute name="osgi.identity" value="org.example.h"/>
+    <repo:attribute name="type" value="osgi.fragment"/>
+    <repo:attribute name="version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.content">
+    <repo:attribute name="osgi.content" value="e0dcb0880b8245acbe6ed60f5b59ae25f4d2a9a0b208333c0af0c2223262921c"/>
+    <repo:attribute name="url" value="testdata/08-fragmenthost.jar"/>
+    <repo:attribute name="size" type="Long" value="1117"/>
+    <repo:attribute name="mime" value="application/vnd.osgi.bundle"/>
+  </repo:capability>
+  <repo:requirement namespace="osgi.wiring.host">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.host=org.example.a)(bundle-version&gt;=0.0.0))"/>
+  </repo:requirement>
+</repo:resource>

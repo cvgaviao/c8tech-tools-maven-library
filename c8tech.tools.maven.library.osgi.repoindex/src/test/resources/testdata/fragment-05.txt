@@ -1,0 +1,24 @@
+<repo:resource>
+  <repo:capability namespace="osgi.identity">
+    <repo:attribute name="osgi.identity" value="org.example.e"/>
+    <repo:attribute name="type" value="osgi.bundle"/>
+    <repo:attribute name="version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.content">
+    <repo:attribute name="osgi.content" value="0304c93ef2bbc862ef9b4d847eff83cbddae2f2a3ac16d5aebc2156b6750cc7b"/>
+    <repo:attribute name="url" value="testdata/05-import.jar"/>
+    <repo:attribute name="size" type="Long" value="972"/>
+    <repo:attribute name="mime" value="application/vnd.osgi.bundle"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.bundle">
+    <repo:attribute name="osgi.wiring.bundle" value="org.example.e"/>
+    <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.host">
+    <repo:attribute name="osgi.wiring.host" value="org.example.e"/>
+    <repo:attribute name="bundle-version" type="Version" value="0.0.0"/>
+  </repo:capability>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.example.a)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+</repo:resource>

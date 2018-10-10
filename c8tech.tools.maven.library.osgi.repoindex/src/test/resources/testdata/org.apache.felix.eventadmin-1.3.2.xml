@@ -1,0 +1,61 @@
+<repo:resource>
+  <repo:capability namespace="osgi.identity">
+    <repo:attribute name="osgi.identity" value="org.apache.felix.eventadmin"/>
+    <repo:attribute name="type" value="osgi.bundle"/>
+    <repo:attribute name="version" type="Version" value="1.3.2"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.content">
+    <repo:attribute name="osgi.content" value="d12e7c15e655e0795cf9bc33bb15219cfb55a63ead195583e6f62958761d3af0"/>
+    <repo:attribute name="url" value="testdata/org.apache.felix.eventadmin-1.3.2.jar"/>
+    <repo:attribute name="size" type="Long" value="216530"/>
+    <repo:attribute name="mime" value="application/vnd.osgi.bundle"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.bundle">
+    <repo:attribute name="osgi.wiring.bundle" value="org.apache.felix.eventadmin"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.3.2"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.host">
+    <repo:attribute name="osgi.wiring.host" value="org.apache.felix.eventadmin"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.3.2"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.osgi.service.event"/>
+    <repo:attribute name="version" type="Version" value="1.3.0"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.felix.eventadmin"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.3.2"/>
+    <repo:directive name="uses" value="org.osgi.framework"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.service">
+    <repo:attribute name="objectClass" value="org.osgi.service.event.EventAdmin"/>
+    <repo:directive name="effective" value="active"/>
+  </repo:capability>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.framework)(version&gt;=1.3.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.cm)(version&gt;=1.2.0)(!(version&gt;=2.0.0)))"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.event)(version&gt;=1.3.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.metatype)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.service">
+    <repo:directive name="filter" value="(objectClass=org.osgi.service.event.EventHandler)"/>
+    <repo:directive name="effective" value="active"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.service">
+    <repo:directive name="filter" value="(objectClass=org.osgi.service.log.LogService)"/>
+    <repo:directive name="effective" value="active"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.service">
+    <repo:directive name="filter" value="(objectClass=org.osgi.service.log.LogReaderService)"/>
+    <repo:directive name="effective" value="active"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+</repo:resource>

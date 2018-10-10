@@ -1,0 +1,181 @@
+<repo:resource>
+  <repo:capability namespace="osgi.identity">
+    <repo:attribute name="osgi.identity" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="type" value="osgi.bundle"/>
+    <repo:attribute name="version" type="Version" value="1.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.content">
+    <repo:attribute name="osgi.content" value="22def9db2e6a1b4542c588e5b79433a557a7e8ee1066ca4d014164dde27a65e8"/>
+    <repo:attribute name="url" value="testdata/org.apache.aries.blueprint-1.0.0.jar"/>
+    <repo:attribute name="size" type="Long" value="437187"/>
+    <repo:attribute name="mime" value="application/vnd.osgi.bundle"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.bundle">
+    <repo:attribute name="osgi.wiring.bundle" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+    <repo:directive name="blueprint.graceperiod" value="false"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.host">
+    <repo:attribute name="osgi.wiring.host" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.osgi.service.blueprint"/>
+    <repo:attribute name="version" type="Version" value="1.0.1"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+    <repo:directive name="uses" value="org.osgi.service.blueprint.container,org.osgi.service.blueprint.reflect,org.apache.aries.blueprint,org.apache.aries.blueprint.ext,org.apache.aries.blueprint.mutable,org.apache.aries.blueprint.compendium.cm"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.osgi.service.blueprint.container"/>
+    <repo:attribute name="version" type="Version" value="1.0.1"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+    <repo:directive name="uses" value="org.osgi.service.blueprint.reflect,org.osgi.framework"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.osgi.service.blueprint.reflect"/>
+    <repo:attribute name="version" type="Version" value="1.0.1"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="version" type="Version" value="1.0.0"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+    <repo:directive name="uses" value="org.osgi.service.blueprint.reflect,org.apache.aries.blueprint.services,org.osgi.framework,org.w3c.dom"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.apache.aries.blueprint.services"/>
+    <repo:attribute name="version" type="Version" value="1.0.0"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+    <repo:directive name="uses" value="org.apache.aries.blueprint,org.osgi.service.blueprint.reflect,org.osgi.framework,org.apache.aries.proxy,org.osgi.service.blueprint.container"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.apache.aries.blueprint.mutable"/>
+    <repo:attribute name="version" type="Version" value="1.0.0"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+    <repo:directive name="uses" value="org.osgi.service.blueprint.reflect,org.apache.aries.blueprint,org.osgi.framework"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.apache.aries.blueprint.ext"/>
+    <repo:attribute name="version" type="Version" value="1.0.0"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+    <repo:directive name="uses" value="org.osgi.service.blueprint.reflect,org.slf4j,org.apache.aries.blueprint,org.osgi.framework,org.osgi.service.blueprint.container,org.apache.aries.blueprint.mutable,org.apache.aries.blueprint.services,org.apache.aries.blueprint.ext.evaluator"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.apache.aries.blueprint.ext.evaluator"/>
+    <repo:attribute name="version" type="Version" value="1.0.0"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.wiring.package">
+    <repo:attribute name="osgi.wiring.package" value="org.apache.aries.blueprint.utils"/>
+    <repo:attribute name="version" type="Version" value="1.0.0"/>
+    <repo:attribute name="bundle-symbolic-name" value="org.apache.aries.blueprint"/>
+    <repo:attribute name="bundle-version" type="Version" value="1.0.0"/>
+    <repo:directive name="uses" value="org.osgi.framework,org.apache.aries.blueprint.services,org.osgi.service.blueprint.container,org.slf4j"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.service">
+    <repo:attribute name="objectClass" value="org.apache.aries.blueprint.NamespaceHandler"/>
+    <repo:attribute name="osgi.service.blueprint.namespace" value=""/>
+    <repo:directive name="effective" value="active"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.service">
+    <repo:attribute name="objectClass" value="org.apache.aries.blueprint.ParserService"/>
+    <repo:directive name="effective" value="active"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.extender">
+    <repo:attribute name="osgi.extender" value="osgi.blueprint"/>
+    <repo:attribute name="version" type="Version" value="1.0.0"/>
+    <repo:directive name="uses" value="org.osgi.service.blueprint.container,org.osgi.service.blueprint.reflect"/>
+    <repo:directive name="effective" value="active"/>
+  </repo:capability>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(osgi.wiring.package=javax.xml.namespace)"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(osgi.wiring.package=javax.xml.parsers)"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(osgi.wiring.package=javax.xml.transform)"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(osgi.wiring.package=javax.xml.transform.dom)"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(osgi.wiring.package=javax.xml.transform.stream)"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(osgi.wiring.package=javax.xml.validation)"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.aries.blueprint.annotation.service)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.aries.proxy)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.aries.quiesce.manager)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.aries.quiesce.participant)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.aries.util)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.aries.util.tracker)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.framework)(version&gt;=1.5.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.blueprint.container)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.blueprint.reflect)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.cm)(version&gt;=1.2.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.event)(version&gt;=1.2.0)(!(version&gt;=2.0.0)))"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.framework)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.util.tracker)(version&gt;=1.4.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.slf4j)(version&gt;=1.5.0)(!(version&gt;=2.0.0)))"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(osgi.wiring.package=org.w3c.dom.ls)"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.wiring.package">
+    <repo:directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.service">
+    <repo:directive name="filter" value="(objectClass=org.osgi.service.cm.ConfigurationAdmin)"/>
+    <repo:directive name="effective" value="active"/>
+    <repo:directive name="resolution" value="optional"/>
+  </repo:requirement>
+  <repo:requirement namespace="osgi.extender">
+    <repo:directive name="filter" value="(&amp;(osgi.extender=osgi.blueprint)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+    <repo:directive name="effective" value="active"/>
+  </repo:requirement>
+</repo:resource>

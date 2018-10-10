@@ -1,0 +1,12 @@
+<repo:resource>
+  <repo:capability namespace="osgi.identity">
+    <repo:attribute name="osgi.identity" value="jcip-annotations"/>
+    <repo:attribute name="type" value="jarfile"/>
+  </repo:capability>
+  <repo:capability namespace="osgi.content">
+    <repo:attribute name="osgi.content" value="15dab616e296ed2eb426e46c1b79615126197a5b9a2ee942bfa72b15c5e3dadd"/>
+    <repo:attribute name="url" value="testdata/jcip-annotations.jar"/>
+    <repo:attribute name="size" type="Long" value="2250"/>
+    <repo:attribute name="mime" value="application/java-archive"/>
+  </repo:capability>
+</repo:resource>
