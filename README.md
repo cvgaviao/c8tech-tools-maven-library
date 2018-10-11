@@ -1,4 +1,4 @@
-
+[![CircleCI](https://circleci.com/gh/cvgaviao/c8tech-tools-maven-library.svg?style=svg)](https://circleci.com/gh/cvgaviao/c8tech-tools-maven-library)
 
 OSGi Subsystem Archive Generator 
 ================================
