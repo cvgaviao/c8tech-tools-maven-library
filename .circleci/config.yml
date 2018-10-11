@@ -30,13 +30,14 @@ jobs: # a collection of steps
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline
+      - run: mvn -fn dependency:resolve-plugins dependency:go-offline
 
       - save_cache: # saves the project dependencies
+          name: Dependencies caching
           paths:
             - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
+            key: v1-dependencies-{{ checksum "pom.xml" }}
         
       # run tests!
-      - run: mvn integration-test
+      - run: mvn clean install
 
