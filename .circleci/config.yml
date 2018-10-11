@@ -2,10 +2,10 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2
-jobs:
-  build:
-    docker:
+version: 2 # use CircleCI 2.0
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
+    docker: # run the steps with Docker
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
       
@@ -14,29 +14,29 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/repo
+    working_directory: ~/repo # directory where steps will run
 
     environment:
       # Customize the JVM maximum heap limit
       MAVEN_OPTS: -Xmx3200m
     
-    steps:
-      - checkout
+    steps: # a collection of executable commands
+      - checkout # check out source code to working directory
 
       # Download and cache dependencies
-      - restore_cache:
+      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
           keys:
           - v1-dependencies-{{ checksum "pom.xml" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: mvn dependency:go-offline
+      - run: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline
 
-      - save_cache:
+      - save_cache: # saves the project dependencies
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
         
       # run tests!
-      - run: mvn clean install
+      - run: mvn integration-test
 
