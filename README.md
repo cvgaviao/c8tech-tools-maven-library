@@ -15,7 +15,7 @@ Full usage details, FAQs, examples and more are available on the
 ## Development
 
 
-###Building
+### Building
 
 To build and run the tests, you need Java 8 or later and Maven 3.5.4 or later. 
 Simply clone this repository and run `mvn clean install`
@@ -26,7 +26,7 @@ In order to run the with test coverage support then run `mvn clean install -Dc8t
 You can use the Eclipse IDE justing importing the project into a workspace. It will automatically ask you to install the m2e related plugins.
 Also, in order to facilitate to build, some m2e launcher files are provided in the .m2e-launchers directory.
 
-###Contributing
+### Contributing
 Note that the tests run the plugin against a number of sample test projects, located in the `test-projects` folder.
 If adding new functionality, or fixing a bug, it is recommended that a sample project be set up so that the scenario
 can be tested end-to-end.
