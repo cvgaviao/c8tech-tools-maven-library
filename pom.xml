@@ -27,7 +27,7 @@
     <version>0.5.1-SNAPSHOT</version>
     <name>C8Tech Maven Tools - Parent/Aggregator POM</name>
     <description>
-        A set of maven components aimed to support the building of maven plugins related to Java OSGi technology.    
+        A set of components aimed to support the building of maven plugins related to Java OSGi technology.    
     </description>
     <packaging>pom</packaging>
 
@@ -65,7 +65,6 @@
         </developer>
     </developers>
 
-
     <modules>
         <module>c8tech.tools.maven.library.mojo</module>
         <module>c8tech.tools.maven.library.osgi.subsystem</module>
@@ -85,11 +84,11 @@
         <!-- must be equal to this project version -->
         <version.c8tech.releng>3.0</version.c8tech.releng>
 
+        <c8tech.scm.repo.name>c8tech-tools-maven-library</c8tech.scm.repo.name>
+
          <!-- The minimal Java compiler version-->
         <java.version>1.8</java.version>
         <javadocJreApiVersion>8</javadocJreApiVersion>
-        
-        <c8tech.scm.repo.name>c8tech-tools-maven-library</c8tech.scm.repo.name>
 
         <!-- Encoding settings-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -259,6 +258,20 @@
     </dependencies>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-file</id>
+                        <goals>
+                            <goal>attach-descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
 
         <pluginManagement>
             <plugins>

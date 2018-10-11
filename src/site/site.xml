@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="C8Tech OSGi Subsystem Maven Plugin"
+    xmlns="http://maven.apache.org/DECORATION/1.4.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.4.0
+                      http://maven.apache.org/xsd/decoration-1.4.0.xsd">
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.7</version>
+    </skin>
+
+    <custom>
+        <fluidoSkin>
+            <topBarEnabled>false</topBarEnabled>
+            <sideBarEnabled>true</sideBarEnabled>
+            <gitHub>
+                <projectId>cvgaviao/c8tech-tools-maven-library</projectId>
+                <ribbonOrientation>right</ribbonOrientation>
+                <ribbonColor>blue</ribbonColor>
+            </gitHub>
+        </fluidoSkin>
+    </custom>
+
+    <bannerLeft>
+        <name>${this.organization.name}</name>
+        <src>images/c8tech.logo.png</src>
+        <href>${this.organization.url}</href>
+    </bannerLeft>
+    <bannerRight>
+        <name>${this.name}</name>
+        <href>${this.url}</href>
+    </bannerRight>
+
+
+    <body>
+        <menu name="Overview">
+            <item name="Introduction" href="index.html" />
+            <item name="License"
+                href="http://www.eclipse.org/legal/epl-v10.html" />
+            <item name="Changelog" href="changelog.html" />
+        </menu>
+
+        <menu ref="modules" />
+
+        <menu ref="reports" />
+    </body>
+</project>

@@ -22,8 +22,8 @@
     </parent>
 
     <artifactId>c8tech.tools.maven.library.osgi.repoindex</artifactId>
-    <name>C8Tech Maven Tools : OSGi Repository Indexed File Generation Library</name>
-    <description>A library OSGi bundle that provides repository indexer service based on the OSGi Alliance BIndex tool.</description>
+    <name>OSGi Repository Indexed File Generation Library</name>
+    <description>An OSGi bundle library providing a repository indexer service based on the OSGi Alliance BIndex tool.</description>
     <packaging>takari-jar</packaging>
 
     <properties>
@@ -35,13 +35,29 @@
         <license>
             <name>OSGi Specification License, Version 2.0</name>
         </license>
+        <license>
+            <name>Eclipse Public License v1.0</name>
+            <url>http://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
     </licenses>
 
+    <!-- Due a maven limitation, this MUST be replicated to all children -->
+    <url>${c8tech.project.site.url}</url>
     <scm>
         <connection>${c8tech.scm.connection}</connection>
         <developerConnection>${c8tech.scm.connection.dev}</developerConnection>
+        <url>${c8tech.scm.url}</url>
         <tag>HEAD</tag>
     </scm>
+    <distributionManagement>
+        <site>
+            <id>${c8tech.distribution.site.id}</id>
+            <name>${c8tech.distribution.site.name}</name>
+            <url>${c8tech.distribution.site.url}</url>
+        </site>
+    </distributionManagement>
+    <!-- end of per child setting -->
 
     <dependencyManagement>
         <dependencies>
