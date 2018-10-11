@@ -46,6 +46,7 @@ import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.resource.Capability;
 import org.osgi.resource.Requirement;
 import org.osgi.service.indexer.AnalyzerException;
+import org.osgi.service.indexer.Constants;
 import org.osgi.service.indexer.ResourceAnalyzer;
 import org.osgi.service.indexer.ResourceIndexer;
 import org.osgi.service.indexer.impl.types.TypedAttribute;
@@ -84,18 +85,19 @@ public class RepoIndex implements ResourceIndexer {
     private final OSGiFrameworkAnalyzer frameworkAnalyzer;
 
     /** the know bundles analyzer */
-//    private final KnownBundleAnalyzer knownBundleAnalyzer;
+     private final KnownBundleAnalyzer knownBundleAnalyzer;
 
     /** the logger */
     private final LogService log;
 
     /** the Declarative Services analyzer */
     private final SCRAnalyzer scrAnalyzer;
-    
-    private final boolean verbose;
 
     /**
      * Construct a default instance that uses a console logger.
+     * 
+     * @param pVerbose
+     *                     when more log message are needed.
      */
     public RepoIndex(boolean pVerbose) {
         this(new ConsoleLogSvc(), pVerbose);
@@ -105,16 +107,17 @@ public class RepoIndex implements ResourceIndexer {
      * Constructor
      *
      * @param log
-     *            the log service to use
+     *                     the log service to use.
+     * @param pVerbose
+     *                     when more log message are needed.
      */
     public RepoIndex(LogService log, boolean pVerbose) {
         this.log = log;
-        this.verbose = pVerbose;
-        this.bundleAnalyzer = new BundleAnalyzer(log, pVerbose);
+        this.bundleAnalyzer = new BundleAnalyzer(log);
         this.frameworkAnalyzer = new OSGiFrameworkAnalyzer(log, pVerbose);
         this.scrAnalyzer = new SCRAnalyzer(log, pVerbose);
         this.blueprintAnalyzer = new BlueprintAnalyzer(log, pVerbose);
-//        this.knownBundleAnalyzer = new KnownBundleAnalyzer(log);
+         this.knownBundleAnalyzer = new KnownBundleAnalyzer(log, pVerbose);
 
         try {
             Filter allFilter = createFilter("(name=*.jar)");
@@ -123,7 +126,7 @@ public class RepoIndex implements ResourceIndexer {
             addAnalyzer(frameworkAnalyzer, allFilter);
             addAnalyzer(scrAnalyzer, allFilter);
             addAnalyzer(blueprintAnalyzer, allFilter);
-//            addAnalyzer(knownBundleAnalyzer, allFilter);
+             addAnalyzer(knownBundleAnalyzer, allFilter);
         } catch (InvalidSyntaxException e) {
             log.log(LogService.LOG_ERROR, "", e);
             throw new ExceptionInInitializerError(
@@ -158,9 +161,10 @@ public class RepoIndex implements ResourceIndexer {
 
     /**
      * @param analyzer
-     *            the analyzer to add
+     *                     the analyzer to add
      * @param filter
-     *            the filter that determines which resources can be analyzed
+     *                     the filter that determines which resources can be
+     *                     analyzed
      */
     public final void addAnalyzer(ResourceAnalyzer analyzer, Filter filter) {
         synchronized (analyzers) {
@@ -182,7 +186,7 @@ public class RepoIndex implements ResourceIndexer {
                 Path bundlesCopyPath = null;
                 Path subsystemsCopyPath = null;
                 Boolean forceAbsolutePath;
-                String rootPathStr = config.get(ResourceIndexer.ROOT_DIR);
+                String rootPathStr = config.get(Constants.ROOT_DIR);
                 if (rootPathStr == null) {
                     rootPathStr = System.getProperty("user.dir");
                 }
@@ -196,18 +200,18 @@ public class RepoIndex implements ResourceIndexer {
                     rootPath = rootDir.getParentFile().toPath();
 
                 String bundlesCopyPathStr = config
-                        .get(ResourceIndexer.BUNDLES_COPY_DIR);
+                        .get(Constants.BUNDLES_COPY_DIR);
                 if (bundlesCopyPathStr != null) {
                     bundlesCopyPath = Paths.get(bundlesCopyPathStr);
                 }
                 String subsystemsCopyPathStr = config
-                        .get(ResourceIndexer.SUBSYSTEMS_COPY_DIR);
+                        .get(Constants.SUBSYSTEMS_COPY_DIR);
                 if (subsystemsCopyPathStr != null) {
                     subsystemsCopyPath = Paths.get(subsystemsCopyPathStr);
                 }
                 forceAbsolutePath = Boolean.valueOf(
-                        config.get(ResourceIndexer.FORCE_ABSOLUTE_PATH));
-                String urlTemplate = config.get(ResourceIndexer.URL_TEMPLATE);
+                        config.get(Constants.FORCE_ABSOLUTE_PATH));
+                String urlTemplate = config.get(Constants.URL_TEMPLATE);
                 setStateLocal(new GeneratorState(rootPath, bundlesCopyPath,
                         subsystemsCopyPath, urlTemplate, forceAbsolutePath));
             } else {
@@ -226,12 +230,10 @@ public class RepoIndex implements ResourceIndexer {
                             try {
                                 analyzer.analyzeResource(resource, caps, reqs);
                             } catch (Exception e) {
-                                log(LogService.LOG_ERROR,
-                                        MessageFormat.format(
-                                                "Error calling analyzer \"{0}\" on resource {1}.",
-                                                analyzer.getClass().getName(),
-                                                resource.getLocation()),
-                                        e);
+                                log(LogService.LOG_ERROR, MessageFormat.format(
+                                        "Error calling analyzer \"{0}\" on resource {1}.",
+                                        analyzer.getClass().getName(),
+                                        resource.getLocation()), e);
                             }
                         }
                     }
@@ -320,8 +322,8 @@ public class RepoIndex implements ResourceIndexer {
         Indent indent;
         PrintWriter pw = null;
         try {
-            String prettySetting = config.get(ResourceIndexer.PRETTY);
-            String compressedSetting = config.get(ResourceIndexer.COMPRESSED);
+            String prettySetting = config.get(Constants.PRETTY);
+            String compressedSetting = config.get(Constants.COMPRESSED);
             /**
              * <pre>
              * pretty   compressed         out-pretty     out-compressed
@@ -358,9 +360,9 @@ public class RepoIndex implements ResourceIndexer {
             pw.print(Schema.XML_PROCESSING_INSTRUCTION);
             Tag repoTag = new Tag(Schema.ELEM_REPOSITORY);
 
-            String repoName = config.get(REPOSITORY_NAME);
+            String repoName = config.get(Constants.REPOSITORY_NAME);
             if (repoName == null)
-                repoName = REPOSITORYNAME_DEFAULT;
+                repoName = Constants.REPOSITORYNAME_DEFAULT;
             repoTag.addAttribute(Schema.ATTR_NAME, repoName);
 
             String increment = config.get(REPOSITORY_INCREMENT_OVERRIDE);
@@ -450,9 +452,10 @@ public class RepoIndex implements ResourceIndexer {
 
     /**
      * @param analyzer
-     *            the analyzer to add
+     *                     the analyzer to add
      * @param filter
-     *            the filter that determines which resources can be analyzed
+     *                     the filter that determines which resources can be
+     *                     analyzed
      */
     public final void removeAnalyzer(ResourceAnalyzer analyzer, Filter filter) {
         synchronized (analyzers) {
@@ -481,6 +484,6 @@ public class RepoIndex implements ResourceIndexer {
 
     @Override
     public void setKnownBundlesExtraProperties(final Properties props) {
-//        knownBundleAnalyzer.setKnownBundlesExtra(props);
+         knownBundleAnalyzer.setKnownBundlesExtra(props);
     }
 }

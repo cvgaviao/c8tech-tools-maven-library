@@ -25,6 +25,10 @@
     <repo:attribute name="bundle-version" type="Version" value="1.2.14"/>
     <repo:directive name="uses" value="org.osgi.framework"/>
   </repo:capability>
+  <repo:capability namespace="osgi.service">
+    <repo:attribute name="objectClass" type="List&lt;String&gt;" value="org.osgi.service.event.EventAdmin"/>
+    <repo:directive name="uses" value="org.osgi.service.event"/>
+  </repo:capability>
   <repo:capability namespace="foo">
     <repo:attribute name="foo" value="bar"/>
   </repo:capability>

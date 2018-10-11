@@ -41,9 +41,9 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.resource.Capability;
 import org.osgi.resource.Requirement;
 import org.osgi.service.indexer.AnalyzerException;
+import org.osgi.service.indexer.Constants;
 import org.osgi.service.indexer.Resource;
 import org.osgi.service.indexer.ResourceAnalyzer;
-import org.osgi.service.indexer.ResourceIndexer;
 import org.osgi.service.log.LogService;
 
 public class IndexerUnitTest {
@@ -52,7 +52,7 @@ public class IndexerUnitTest {
             String expectedPath, String jarPath) throws Exception {
         StringWriter writer = new StringWriter();
         Map<String, String> props = new HashMap<String, String>();
-        props.put(ResourceIndexer.ROOT_DIR,
+        props.put(Constants.ROOT_DIR,
                 IndexerUnitTest.class.getResource("/").getPath());
         indexer.indexFragment(Collections.singleton(new File(
                 IndexerUnitTest.class.getResource("/" + jarPath).getPath())),
@@ -76,7 +76,7 @@ public class IndexerUnitTest {
         RepoIndex indexer = new RepoIndex(true);
         indexer.addAnalyzer(new WibbleAnalyzer(), null);
         Map<String, String> props = new HashMap<String, String>();
-        props.put(ResourceIndexer.ROOT_DIR,
+        props.put(Constants.ROOT_DIR,
                 getClass().getResource("/").getPath());
         StringWriter writer = new StringWriter();
         LinkedHashSet<File> files = new LinkedHashSet<File>();
@@ -98,7 +98,7 @@ public class IndexerUnitTest {
         indexer.addAnalyzer(new WibbleAnalyzer(),
                 FrameworkUtil.createFilter("(location=*sion.jar)"));
         Map<String, String> props = new HashMap<String, String>();
-        props.put(ResourceIndexer.ROOT_DIR,
+        props.put(Constants.ROOT_DIR,
                 getClass().getResource("/").getPath());
         StringWriter writer = new StringWriter();
         LinkedHashSet<File> files = new LinkedHashSet<File>();
@@ -121,7 +121,7 @@ public class IndexerUnitTest {
         RepoIndex indexer = new RepoIndex(log, true);
 
         Map<String, String> props = new HashMap<String, String>();
-        props.put(ResourceIndexer.ROOT_DIR,
+        props.put(Constants.ROOT_DIR,
                 getClass().getResource("/testdata/subdir").getPath());
 
         StringWriter writer = new StringWriter();
@@ -144,8 +144,8 @@ public class IndexerUnitTest {
 
         Map<String, String> config = new HashMap<String, String>();
         config.put(RepoIndex.REPOSITORY_INCREMENT_OVERRIDE, "0");
-        config.put(ResourceIndexer.REPOSITORY_NAME, "empty");
-        config.put(ResourceIndexer.PRETTY, "true");
+        config.put(Constants.REPOSITORY_NAME, "empty");
+        config.put(Constants.PRETTY, "true");
         indexer.index(files, out, config);
 
         String expected = Utils.readStream(new FileInputStream(
@@ -325,9 +325,9 @@ public class IndexerUnitTest {
 
         Map<String, String> config = new HashMap<String, String>();
         config.put(RepoIndex.REPOSITORY_INCREMENT_OVERRIDE, "0");
-        config.put(ResourceIndexer.ROOT_DIR,
+        config.put(Constants.ROOT_DIR,
                 getClass().getResource("/").getPath());
-        config.put(ResourceIndexer.REPOSITORY_NAME, "full-c+f");
+        config.put(Constants.REPOSITORY_NAME, "full-c+f");
         indexer.index(files, out, config);
 
         String unpackedXML = Utils.readStream(new FileInputStream(
@@ -362,22 +362,22 @@ public class IndexerUnitTest {
                 .getResource("/testdata/06-requirebundle.jar").getPath()));
 
         Map<String, String> config = new HashMap<String, String>();
-        config.put(ResourceIndexer.ROOT_DIR,
+        config.put(Constants.ROOT_DIR,
                 new File(getClass().getResource("/").getPath())
                         .getAbsoluteFile().toURI().toURL().toString());
         int outIndex = 0;
         for (Boolean pretty : pretties) {
             for (Boolean compression : compressions) {
                 config.put(RepoIndex.REPOSITORY_INCREMENT_OVERRIDE, "0");
-                config.put(ResourceIndexer.ROOT_DIR,
+                config.put(Constants.ROOT_DIR,
                         getClass().getResource("/").getPath());
-                config.put(ResourceIndexer.REPOSITORY_NAME, "full-c+f");
+                config.put(Constants.REPOSITORY_NAME, "full-c+f");
                 if (pretty != null) {
-                    config.put(ResourceIndexer.PRETTY,
+                    config.put(Constants.PRETTY,
                             pretty.toString().toLowerCase());
                 }
                 if (compression != null) {
-                    config.put(ResourceIndexer.COMPRESSED,
+                    config.put(Constants.COMPRESSED,
                             compression.toString().toLowerCase());
                 }
                 indexer.index(files, out, config);
@@ -428,7 +428,7 @@ public class IndexerUnitTest {
 
         // Run the indexer
         Map<String, String> props = new HashMap<String, String>();
-        props.put(ResourceIndexer.ROOT_DIR, getClass()
+        props.put(Constants.ROOT_DIR, getClass()
                 .getResource("/testdata/02-localization.jar").getPath());
         StringWriter writer = new StringWriter();
         indexer.indexFragment(Collections.singleton(new File(getClass()
@@ -512,7 +512,7 @@ public class IndexerUnitTest {
         indexer.addAnalyzer(new NaughtyAnalyzer(), null);
 
         Map<String, String> props = new HashMap<String, String>();
-        props.put(ResourceIndexer.ROOT_DIR,
+        props.put(Constants.ROOT_DIR,
                 getClass().getResource("/testdata/").getPath());
 
         StringWriter writer = new StringWriter();
@@ -529,7 +529,7 @@ public class IndexerUnitTest {
         RepoIndex indexer = new RepoIndex(true);
 
         Map<String, String> props = new HashMap<String, String>();
-        props.put(ResourceIndexer.ROOT_DIR,
+        props.put(Constants.ROOT_DIR,
                 getClass().getResource("/testdata").getPath());
 
         StringWriter writer = new StringWriter();
@@ -547,7 +547,7 @@ public class IndexerUnitTest {
         RepoIndex indexer = new RepoIndex(true);
 
         Map<String, String> props = new HashMap<String, String>();
-        props.put(ResourceIndexer.ROOT_DIR,
+        props.put(Constants.ROOT_DIR,
                 getClass().getResource("/testdata").getPath());
 
         StringWriter writer = new StringWriter();

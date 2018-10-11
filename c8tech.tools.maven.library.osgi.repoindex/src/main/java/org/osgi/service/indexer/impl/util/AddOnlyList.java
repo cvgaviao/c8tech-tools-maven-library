@@ -60,7 +60,8 @@ class AddOnlyIterator<T> implements Iterator<T> {
  * 
  * @author Neil Bartlett
  * 
- * @param <T> The type of the list.
+ * @param <T>
+ *            The type of the list.
  */
 public class AddOnlyList<T> extends LinkedList<T> {
 
@@ -79,7 +80,7 @@ public class AddOnlyList<T> extends LinkedList<T> {
      * Create a new add-only list based on the specified underlying list.
      * 
      * @param list
-     *            The list providing the underlying data structure.
+     *                 The list providing the underlying data structure.
      */
     public AddOnlyList(Collection<? extends T> list) {
         super(list);
@@ -89,9 +90,7 @@ public class AddOnlyList<T> extends LinkedList<T> {
 
     @Override
     public void add(int index, T element) {
-        if (this.contains(element)) {
-            return;
-        } else {
+        if (!this.contains(element)) {
             super.add(index, element);
         }
     }

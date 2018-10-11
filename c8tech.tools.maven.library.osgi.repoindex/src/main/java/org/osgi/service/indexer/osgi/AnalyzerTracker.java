@@ -18,6 +18,7 @@ import org.osgi.framework.Filter;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
+import org.osgi.service.indexer.Constants;
 import org.osgi.service.indexer.ResourceAnalyzer;
 import org.osgi.service.indexer.impl.RepoIndex;
 import org.osgi.service.log.LogService;
@@ -48,7 +49,7 @@ class AnalyzerTracker extends
         TrackingStruct struct = new TrackingStruct();
         try {
             String filterStr = (String) reference
-                    .getProperty(ResourceAnalyzer.FILTER);
+                    .getProperty(Constants.FILTER);
             Filter lfilter = (filterStr != null)
                     ? FrameworkUtil.createFilter(filterStr) : null;
 
@@ -81,7 +82,7 @@ class AnalyzerTracker extends
         TrackingStruct struct = null;
         try {
             String filterStr = (String) reference
-                    .getProperty(ResourceAnalyzer.FILTER);
+                    .getProperty(Constants.FILTER);
             Filter lfilter = (filterStr != null)
                     ? FrameworkUtil.createFilter(filterStr) : null;
 

@@ -20,11 +20,12 @@ package org.osgi.service.indexer.impl.util;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.Vector;
 
 /**
  * The Tag class represents a minimal XML tree. It consist of a named element
@@ -39,7 +40,7 @@ public class Tag {
 
     private static final String XMLNS_SCHEME = "xmlns:";
     Map<String, String> attributes = new TreeMap<>();
-    Vector<Object> content = new Vector<Object>(); //NOSONAR
+    ArrayList<Object> content = new ArrayList<>();
     String name;
 
     Tag parent;
@@ -161,7 +162,7 @@ public class Tag {
      *                   The content to be added.
      */
     public void addContent(String string) {
-        content.addElement(string);
+        content.add(string);
     }
 
     /**
@@ -171,7 +172,7 @@ public class Tag {
      *                The content to be added.
      */
     public void addContent(Tag tag) {
-        content.addElement(tag);
+        content.add(tag);
         tag.parent = this;
     }
 
@@ -185,7 +186,7 @@ public class Tag {
         if (s == null)
             return "?null?";
 
-        StringBuffer sb = new StringBuffer(); //NOSONAR
+        StringBuilder sb = new StringBuilder(); //NOSONAR
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             switch (c) {
@@ -299,7 +300,7 @@ public class Tag {
      * 
      * @return A Vector of objects representing the contents.
      */
-    public Vector<Object> getContents() {
+    public List<Object> getContents() {
         return content;
     }
 
@@ -312,11 +313,11 @@ public class Tag {
      * 
      * @return A Vector of objects representing the contents.
      */
-    public Vector<Object> getContents(String tag) {
-        Vector<Object> out = new Vector<>();
+    public List<Object> getContents(String tag) {
+        List<Object> out = new ArrayList<>();
         for (Object o : content) {
             if (o instanceof Tag && ((Tag) o).getName().equals(tag))
-                out.addElement(o);
+                out.add(o);
         }
         return out;
     }
@@ -327,18 +328,18 @@ public class Tag {
      * @return A string representing the contents.
      */
     public String getContentsAsString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         getContentsAsString(sb);
         return sb.toString();
     }
 
     /**
-     * convenient method to get the contents in a StringBuffer.
+     * convenient method to get the contents in a StringBuilder.
      * 
      * @param sb
      *               A string buffer.
      */
-    public void getContentsAsString(StringBuffer sb) {
+    public void getContentsAsString(StringBuilder sb) {
         for (Object o : content) {
             if (o instanceof Tag)
                 ((Tag) o).getContentsAsString(sb);
@@ -377,10 +378,6 @@ public class Tag {
         return findRecursiveAttribute(XMLNS);
     }
 
-    /*
-     * Make spaces. void spaces(PrintWriter pw, int n) { while (n-- > 0)
-     * pw.print(' '); }
-     */
     public String getString(String path) {
         String attribute = null;
         int index = path.indexOf('@');
@@ -395,7 +392,7 @@ public class Tag {
                 path = "";
         }
         Tag[] tags = select(path);
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tags.length; i++) {
             if (attribute == null)
                 tags[i].getContentsAsString(sb);
@@ -406,7 +403,7 @@ public class Tag {
     }
 
     public String getStringContent() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (Object c : content) {
             if (!(c instanceof Tag))
                 sb.append(c);
@@ -524,32 +521,38 @@ public class Tag {
     }
 
     public Tag[] select(String path, Tag mapping) {
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         select(path, v, mapping);
         Tag[] result = new Tag[v.size()];
-        v.copyInto(result);
+        result = v.toArray(result);
         return result;
     }
 
-    void select(String path, Vector<Object> results, Tag mapping) {
-        if (path.startsWith("//")) {
-            int i = path.indexOf('/', 2);
-            String lname = path.substring(2, i < 0 ? path.length() : i);
+    void processRelative(String path, List<Object> results, Tag mapping) {
 
-            for (Object o : content) {
-                if (o instanceof Tag) {
-                    Tag child = (Tag) o;
-                    if (match(lname, child, mapping))
-                        results.add(child);
-                    child.select(path, results, mapping);
-                }
+        int i = path.indexOf('/', 2);
+        String lname = path.substring(2, i < 0 ? path.length() : i);
 
+        for (Object o : content) {
+            if (o instanceof Tag) {
+                Tag child = (Tag) o;
+                if (match(lname, child, mapping))
+                    results.add(child);
+                child.select(path, results, mapping);
             }
+        }
+    }
+    
+    
+    void select(String path, List<Object> results, Tag mapping) {
+        if (path.startsWith("//")) {
+            
+            processRelative(path, results, mapping);
             return;
         }
 
         if (path.length() == 0) {
-            results.addElement(this);
+            results.add(this);
             return;
         }
 

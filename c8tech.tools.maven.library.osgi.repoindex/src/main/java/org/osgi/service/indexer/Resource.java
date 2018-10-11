@@ -30,18 +30,6 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @ProviderType
 public interface Resource {
-    /** the name of the name attribute */
-    static String NAME = "name";
-
-    /** the name of the location attribute */
-    static String LOCATION = "location";
-
-    /** the name of the size attribute */
-    static String SIZE = "size";
-
-    /** the name of the lastmodified attribute */
-    static String LAST_MODIFIED = "lastmodified";
-
     /**
      * @return the value for the location attribute
      */

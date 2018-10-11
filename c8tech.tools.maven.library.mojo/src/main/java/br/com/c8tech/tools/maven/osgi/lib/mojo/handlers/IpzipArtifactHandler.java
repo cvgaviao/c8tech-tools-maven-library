@@ -86,19 +86,9 @@ public class IpzipArtifactHandler extends AbstractTypeHandler {
 
     @Override
     public File getWorkspaceDirectory(File pArtifactFile) {
-        File inputFile = null;
-        if (pArtifactFile == null) {
-            return null;
-        }
-        if (pArtifactFile.isFile()
-                && pArtifactFile.toPath().endsWith(POM_FILE)) {
-            inputFile = pArtifactFile.toPath().getParent()
-                    .resolve("target/ipzip/").toFile();
-        } else
-            if (pArtifactFile.toPath().endsWith("target/classes")) {
-                inputFile = pArtifactFile.toPath().getParent().resolve("ipzip/")
-                        .toFile();
-            }
-        return inputFile;
+
+        return calculateWorkspaceDirectory(pArtifactFile, POM_FILE,
+                "target/ipzip/", "target/classes", "ipzip/");
+
     }
 }

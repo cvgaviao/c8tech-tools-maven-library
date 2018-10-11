@@ -33,6 +33,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
+import org.osgi.service.indexer.Constants;
 import org.osgi.service.indexer.Resource;
 
 public class JarResource implements Resource {
@@ -41,7 +42,7 @@ public class JarResource implements Resource {
     private final JarFile jarFile;
     private final String ilocation;
 
-    private final Dictionary<String, Object> properties = new Hashtable<>(); //NOSONAR
+    private final Dictionary<String, Object> properties = new Hashtable<>(); // NOSONAR
 
     private final Map<String, List<JarEntry>> prefixMap = new HashMap<>();
     private final Map<String, JarEntry> paths = new HashMap<>();
@@ -54,10 +55,10 @@ public class JarResource implements Resource {
         this.ilocation = file.getPath();
         this.jarFile = new JarFile(file);
 
-        properties.put(NAME, file.getName());
-        properties.put(LOCATION, ilocation);
-        properties.put(SIZE, file.length());
-        properties.put(LAST_MODIFIED, file.lastModified());
+        properties.put(Constants.NAME, file.getName());
+        properties.put(Constants.LOCATION, ilocation);
+        properties.put(Constants.SIZE, file.length());
+        properties.put(Constants.LAST_MODIFIED, file.lastModified());
 
         Enumeration<JarEntry> entries = jarFile.entries();
         while (entries.hasMoreElements()) {
@@ -90,12 +91,8 @@ public class JarResource implements Resource {
     }
 
     private synchronized List<JarEntry> getOrCreatePrefix(String prefix) {
-        List<JarEntry> list = prefixMap.get(prefix);
-        if (list == null) {
-            list = new LinkedList<>();
-            prefixMap.put(prefix, list);
-        }
-        return list;
+        return prefixMap.computeIfAbsent(prefix,
+                k -> new LinkedList<JarEntry>());
     }
 
     @Override
@@ -139,7 +136,7 @@ public class JarResource implements Resource {
     public List<String> listChildren(String prefix) throws IOException {
         List<JarEntry> entries = prefixMap.get(prefix);
         if (entries == null)
-            return null;
+            return null; // NOSONAR
 
         List<String> result = new ArrayList<>(entries.size());
         for (JarEntry entry : entries) {

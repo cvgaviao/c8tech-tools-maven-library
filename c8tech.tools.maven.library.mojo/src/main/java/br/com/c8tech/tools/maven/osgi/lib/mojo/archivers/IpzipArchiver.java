@@ -41,7 +41,7 @@ import br.com.c8tech.tools.maven.osgi.lib.mojo.handlers.ContentTypeExtraField;
 @Named(CommonMojoConstants.OSGI_IPZIP_PACKAGING)
 @Typed(Archiver.class)
 @Singleton
-public class IpzipArchiver extends JarArchiver {
+public class IpzipArchiver extends JarArchiver { //NOSONAR
 
     private File agentConfigurationEntry;
 

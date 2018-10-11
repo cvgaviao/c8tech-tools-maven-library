@@ -70,6 +70,25 @@ public abstract class AbstractTypeHandler implements ExtendedArtifactHandler {
         this.type = pType;
     }
 
+    protected static File calculateWorkspaceDirectory(File pArtifactFile,
+            String pFileExtension, String pFileTarget, String pDirExtension,
+            String pDirTarget) {
+        File inputFile = null;
+        if (pArtifactFile == null) {
+            return null;
+        }
+        if (pArtifactFile.isFile()
+                && pArtifactFile.toPath().endsWith(pFileExtension)) {
+            inputFile = pArtifactFile.toPath().getParent().resolve(pFileTarget)
+                    .toFile();
+        } else
+            if (pArtifactFile.toPath().endsWith(pDirExtension)) {
+                inputFile = pArtifactFile.toPath().getParent()
+                        .resolve(pDirTarget).toFile();
+            }
+        return inputFile;
+    }
+
     protected static final Map<String, String> readJarManifest(JarFile pJarFile, // NOSONAR
             Manifest manifest) { // NOSONAR
         if (manifest == null || manifest.getMainAttributes() == null) {

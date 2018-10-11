@@ -39,13 +39,6 @@ import org.osgi.resource.Requirement;
 @ConsumerType
 public interface ResourceAnalyzer {
     /**
-     * The service property used to declare a resource filter, so that the
-     * analyzer is only invoked on a subset of resources. Example:
-     * {@code (&(|(name=foo.jar)(name=*.ear))(lastmodified>=1262217600753))}
-     */
-    static final String FILTER = "filter";
-
-    /**
      * <p>
      * This method is invoked for each resource that the analyzer is requested
      * to analyze. Implementations add zero or more capabilities and/or

@@ -29,6 +29,57 @@ import java.util.regex.Pattern;
  */
 public final class VersionConverter {
 
+    private static class CommonOutputBuilder{
+        
+        protected String buildNumber;
+        protected Integer incremental;
+        protected LeftDelimiter leftDelimiter;
+        protected String leftVersion;
+        protected Integer major;
+        protected Integer minor;
+        protected String qualifier;
+        protected RightDelimiter rightDelimiter;
+        protected String rightVersion;
+
+
+        public String getVersionRangeString() {
+            String sLeftVersion = leftVersion == null ? getVersionString()
+                    : leftVersion;
+            String sRightVersion = rightVersion == null ? sLeftVersion
+                    : rightVersion;
+
+            if (!ZERO.equals(sLeftVersion) && ZERO.equals(sRightVersion)
+                    && leftDelimiter.equals(LeftDelimiter.CLOSE)) {
+                if (rightDelimiter.equals(RightDelimiter.OPEN)) {
+                    return sLeftVersion;
+                } else
+                    if (RightDelimiter.CLOSE.equals(rightDelimiter)) {
+                        sRightVersion = sLeftVersion;
+                    }
+            }
+            return String.format(VERSION_RANGE_OUTPUT_FORMAT,
+                    leftDelimiter.getDelimiterChar(), sLeftVersion,
+                    RANGE_SEPARATOR, sRightVersion,
+                    rightDelimiter.getDelimiterChar());
+        }
+        
+        public String getVersionString() {
+            String versionString = String.format(VERSION_OUTPUT_FORMAT, major,
+                    VERSION_SEPARATOR, minor, VERSION_SEPARATOR, incremental);
+
+            if (qualifier != null) {
+                versionString = versionString.concat(SEPARATOR_Q)
+                        .concat(qualifier.equals(OSGI_SNAPSHOT) ? MAVEN_SNAPSHOT
+                                : qualifier);
+            }
+            if (buildNumber != null) {
+                versionString = versionString.concat(SEPARATOR_Q)
+                        .concat(buildNumber);
+            }
+            return versionString;
+        }
+    }
+
     public enum LeftDelimiter {
         CLOSE('['), OPEN('(');
 
@@ -248,6 +299,7 @@ public final class VersionConverter {
 
     }
 
+    
     public interface MavenVersionOutput {
 
         String getFixedVersionRangeString();
@@ -258,19 +310,10 @@ public final class VersionConverter {
 
         String getVersionString();
     }
-
-    private static class MavenVersionOutputBuilder
+    
+    private static class MavenVersionOutputBuilder extends CommonOutputBuilder
             implements MavenVersionOutput {
 
-        private String buildNumber;
-        private Integer incremental;
-        private LeftDelimiter leftDelimiter;
-        private String leftVersion;
-        private Integer major;
-        private Integer minor;
-        private String qualifier;
-        private RightDelimiter rightDelimiter;
-        private String rightVersion;
 
         public MavenVersionOutputBuilder(int pMajor, int pMinor,
                 int pIncremental, String pQualifier, String pBuildNumber) {
@@ -338,22 +381,7 @@ public final class VersionConverter {
                     rightDelimiter.getDelimiterChar());
         }
 
-        @Override
-        public String getVersionString() {
-            String versionString = String.format(VERSION_OUTPUT_FORMAT, major,
-                    VERSION_SEPARATOR, minor, VERSION_SEPARATOR, incremental);
 
-            if (qualifier != null) {
-                versionString = versionString.concat(SEPARATOR_Q)
-                        .concat(qualifier.equals(OSGI_SNAPSHOT) ? MAVEN_SNAPSHOT
-                                : qualifier);
-            }
-            if (buildNumber != null) {
-                versionString = versionString.concat(SEPARATOR_Q)
-                        .concat(buildNumber);
-            }
-            return versionString;
-        }
     }
 
     private static class MavenVersionRangeInputBuilder implements
@@ -482,10 +510,10 @@ public final class VersionConverter {
 
     public static interface MavenVersionSplittedInputSteps {
 
+        MavenVersionSplittedInputSteps buildNumber(String pMavenBuildNumber);
+
         MavenVersionSplittedInputSteps incremental(
                 Integer pMavenIncrementalVersion);
-
-        MavenVersionSplittedInputSteps buildNumber(String pMavenBuildNumber);
 
         MavenVersionSplittedInputSteps major(Integer pMavenMajorVersion);
 
@@ -704,17 +732,9 @@ public final class VersionConverter {
 
     }
 
-    private static class OSGiVersionOutputBuilder implements OSGiVersionOutput {
+    private static class OSGiVersionOutputBuilder extends CommonOutputBuilder implements OSGiVersionOutput {
 
-        private String buildNumber;
-        private LeftDelimiter leftDelimiter;
-        private String leftVersion;
-        private Integer major;
         private Integer micro;
-        private Integer minor;
-        private String qualifier;
-        private RightDelimiter rightDelimiter;
-        private String rightVersion;
 
         public OSGiVersionOutputBuilder(Integer pMajor, Integer pMinor,
                 Integer pMicro, String pQualifier, String pBuildNumber) {
@@ -760,27 +780,6 @@ public final class VersionConverter {
                     RightDelimiter.OPEN.getDelimiterChar());
         }
 
-        @Override
-        public String getVersionRangeString() {
-            String sLeftVersion = leftVersion == null ? getVersionString()
-                    : leftVersion;
-            String sRightVersion = rightVersion == null ? sLeftVersion
-                    : rightVersion;
-
-            if (!ZERO.equals(sLeftVersion) && ZERO.equals(sRightVersion)
-                    && leftDelimiter.equals(LeftDelimiter.CLOSE)) {
-                if (rightDelimiter.equals(RightDelimiter.OPEN)) {
-                    return sLeftVersion;
-                } else
-                    if (RightDelimiter.CLOSE.equals(rightDelimiter)) {
-                        sRightVersion = sLeftVersion;
-                    }
-            }
-            return String.format(VERSION_RANGE_OUTPUT_FORMAT,
-                    leftDelimiter.getDelimiterChar(), sLeftVersion,
-                    RANGE_SEPARATOR, sRightVersion,
-                    rightDelimiter.getDelimiterChar());
-        }
 
         @Override
         public String getVersionString() {

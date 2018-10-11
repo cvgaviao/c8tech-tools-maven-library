@@ -19,6 +19,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.indexer.ResourceAnalyzer;
+import org.osgi.service.indexer.Constants;
 
 public class Activator implements BundleActivator {
 
@@ -30,7 +31,7 @@ public class Activator implements BundleActivator {
         analyzer = new SubsystemResourceAnalyzer();
 
         Dictionary<String, String> properties = new Hashtable<>(); // NOSONAR
-        properties.put(ResourceAnalyzer.FILTER, "(name=*.esa)");
+        properties.put(Constants.FILTER, "(name=*.esa)");
         registration = context.registerService(ResourceAnalyzer.class, analyzer,
                 properties);
     }

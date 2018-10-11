@@ -101,20 +101,9 @@ public abstract class AbstractSubsystemArtifactHandler
 
     @Override
     public File getWorkspaceDirectory(File pArtifactFile) {
-        File inputFile = null;
-        if (pArtifactFile == null) {
-            return null;
-        }
-        if (pArtifactFile.isFile()
-                && pArtifactFile.toPath().endsWith(POM_FILE)) {
-            inputFile = pArtifactFile.toPath().getParent()
-                    .resolve("target/esa/").toFile();
-        } else
-            if (pArtifactFile.toPath().endsWith("target/classes")) {
-                inputFile = pArtifactFile.toPath().getParent().resolve("esa/")
-                        .toFile();
-            }
-        return inputFile;
+
+        return calculateWorkspaceDirectory(pArtifactFile, POM_FILE,
+                "target/esa/", "target/classes", "esa/");
     }
 
     @Override

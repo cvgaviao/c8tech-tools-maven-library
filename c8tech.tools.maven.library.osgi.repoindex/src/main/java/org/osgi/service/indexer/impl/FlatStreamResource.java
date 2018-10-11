@@ -25,6 +25,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.jar.Manifest;
 
+import org.osgi.service.indexer.Constants;
 import org.osgi.service.indexer.Resource;
 
 class FlatStreamResource implements Resource {
@@ -38,8 +39,8 @@ class FlatStreamResource implements Resource {
         this.iLocation = pLocation;
         this.stream = stream;
 
-        properties.put(NAME, name);
-        properties.put(LOCATION, pLocation);
+        properties.put(Constants.NAME, name);
+        properties.put(Constants.LOCATION, pLocation);
     }
 
     @Override

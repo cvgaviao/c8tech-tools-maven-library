@@ -79,23 +79,11 @@ public class DeploymentPackageArtifactHandler extends AbstractTypeHandler {
         return CommonMojoConstants.OSGI_DP_EXTENSION.equals(pFilePath.toString()
                 .substring(pFilePath.toString().lastIndexOf('.') + 1));
     }
-    
+
     @Override
     public File getWorkspaceDirectory(File pArtifactFile) {
-        File inputFile = null;
-        if (pArtifactFile == null) {
-            return null;
-        }
-        if (pArtifactFile.isFile()
-                && pArtifactFile.toPath().endsWith(POM_FILE)) {
-            inputFile = pArtifactFile.toPath().getParent()
-                    .resolve("target/dp/").toFile();
-        } else
-            if (pArtifactFile.toPath().endsWith("target/classes")) {
-                inputFile = pArtifactFile.toPath().getParent().resolve("dp/")
-                        .toFile();
-            }
-        return inputFile;
-    }
 
+        return calculateWorkspaceDirectory(pArtifactFile, POM_FILE,
+                "target/dp/", "target/classes", "dp/");
+    }
 }

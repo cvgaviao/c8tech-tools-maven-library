@@ -30,7 +30,7 @@ public class BundleAnalyzerUnitTest {
 
     @Test
     public void testContentAndIdentity() throws Exception {
-        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc(), true);
+        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc());
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
@@ -63,7 +63,7 @@ public class BundleAnalyzerUnitTest {
 
     @Test
     public void testPackageExports() throws Exception {
-        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc(), true);
+        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc());
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
@@ -81,7 +81,7 @@ public class BundleAnalyzerUnitTest {
 
     @Test
     public void testPackageExportUses() throws Exception {
-        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc(), true);
+        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc());
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
@@ -106,7 +106,7 @@ public class BundleAnalyzerUnitTest {
     @Test
     public void testPackageExportBundleSymbolicNameAndVersion()
             throws Exception {
-        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc(), true);
+        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc());
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
@@ -134,7 +134,7 @@ public class BundleAnalyzerUnitTest {
 
     @Test
     public void testPackageImports() throws Exception {
-        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc(), true);
+        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc());
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
@@ -151,7 +151,7 @@ public class BundleAnalyzerUnitTest {
 
     @Test
     public void testRequireBundle() throws Exception {
-        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc(), true);
+        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc());
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
@@ -168,7 +168,7 @@ public class BundleAnalyzerUnitTest {
 
     @Test
     public void testPackageImportOptional() throws Exception {
-        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc(), true);
+        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc());
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
@@ -185,7 +185,7 @@ public class BundleAnalyzerUnitTest {
 
     @Test
     public void testFragmentHost() throws Exception {
-        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc(), true);
+        BundleAnalyzer a = new BundleAnalyzer(new NullLogSvc());
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 

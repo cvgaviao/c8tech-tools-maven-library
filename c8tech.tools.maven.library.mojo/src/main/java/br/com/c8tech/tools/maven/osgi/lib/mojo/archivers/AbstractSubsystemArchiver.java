@@ -31,8 +31,8 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.codehaus.plexus.archiver.Archiver;
 import org.codehaus.plexus.archiver.ArchiverException;
+import org.codehaus.plexus.archiver.zip.AbstractZipArchiver;
 import org.codehaus.plexus.archiver.zip.ConcurrentJarCreator;
-import org.codehaus.plexus.archiver.zip.ZipArchiver;
 
 import br.com.c8tech.tools.maven.osgi.lib.mojo.CommonMojoConstants;
 
@@ -44,7 +44,7 @@ import br.com.c8tech.tools.maven.osgi.lib.mojo.CommonMojoConstants;
 @Named(CommonMojoConstants.OSGI_SUBSYSTEM_EXTENSION)
 @Typed(Archiver.class)
 @Singleton
-public class AbstractSubsystemArchiver extends ZipArchiver {
+public class AbstractSubsystemArchiver extends AbstractZipArchiver {
 
     /**
      * the name of the meta-inf dir
@@ -151,8 +151,7 @@ public class AbstractSubsystemArchiver extends ZipArchiver {
                             + ioe.getMessage() + ")",
                     ioe);
         } finally {
-            // Close the output stream.
-            // IOUtil.close( zOut );
+            getLogger().debug("Finished writing file.");
         }
         return true;
     }

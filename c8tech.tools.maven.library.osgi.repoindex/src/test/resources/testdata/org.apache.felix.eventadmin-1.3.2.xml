@@ -29,6 +29,10 @@
     <repo:attribute name="objectClass" value="org.osgi.service.event.EventAdmin"/>
     <repo:directive name="effective" value="active"/>
   </repo:capability>
+  <repo:capability namespace="osgi.service">
+    <repo:attribute name="objectClass" type="List&lt;String&gt;" value="org.osgi.service.event.EventAdmin"/>
+    <repo:directive name="uses" value="org.osgi.service.event"/>
+  </repo:capability>
   <repo:requirement namespace="osgi.wiring.package">
     <repo:directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.framework)(version&gt;=1.3.0)(!(version&gt;=2.0.0)))"/>
   </repo:requirement>

@@ -72,13 +72,12 @@ public class OSGiHeader {
                 while (del == ';') {
                     String adname = qt.nextToken();
                     if ((del = qt.getSeparator()) != '=') {
-                        if (hadAttribute)
-                            if (logger != null) {
-                                logger.error(
-                                        "Header contains name field after attribute or directive: "
-                                                + adname + " from " + value
-                                                + ". Name fields must be consecutive, separated by a ';' like a;b;c;x=3;y=4");
-                            }
+                        if (hadAttribute && logger != null) {
+                            logger.error(
+                                    "Header contains name field after attribute or directive: "
+                                            + adname + " from " + value
+                                            + ". Name fields must be consecutive, separated by a ';' like a;b;c;x=3;y=4");
+                        }
                         if (adname != null && adname.length() > 0)
                             aliases.add(adname.trim());
                     } else {

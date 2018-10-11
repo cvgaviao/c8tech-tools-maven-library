@@ -78,6 +78,8 @@ public final class DefaultArtifactTrackerManager
     private static final Logger LOG = LoggerFactory
             .getLogger(DefaultArtifactTrackerManager.class);
 
+    public static final String SNAPSHOT = "-SNAPSHOT";
+
     private ArtifactFilter artifactFilter;
 
     private final boolean assemblyUrlProtocolAllowed;
@@ -186,10 +188,9 @@ public final class DefaultArtifactTrackerManager
                 CommonMojoConstants.CACHED_FILE_PATTERN_SYMBOLIC_NAME,
                 pManifestSN);
 
-        if (pVersion.endsWith("-SNAPSHOT")) {
+        if (pVersion.endsWith(SNAPSHOT)) {
             long instant = System.currentTimeMillis();
-            pVersion = pVersion.replace("-SNAPSHOT",
-                    "." + Long.toString(instant));
+            pVersion = pVersion.replace(SNAPSHOT, "." + Long.toString(instant));
         }
         result = result.replaceAll(
                 CommonMojoConstants.CACHED_FILE_PATTERN_VERSION, pVersion);
@@ -227,8 +228,7 @@ public final class DefaultArtifactTrackerManager
 
     private Path calculateWorkspaceArtifactOriginalFilePath(
             ExtendedArtifactHandler pExtendedArtifactHandler,
-            Artifact pDependency, BundleRef pBundleConfig, String pManifestSN,
-            String pManifestVersion) {
+            Artifact pDependency, String pManifestSN, String pManifestVersion) {
         String adjustedOriginalFilePath;
 
         File baseDir = pExtendedArtifactHandler
@@ -241,9 +241,9 @@ public final class DefaultArtifactTrackerManager
                         .getVersionString();
 
             } else {
-                if (pManifestVersion.endsWith("-SNAPSHOT")) {
+                if (pManifestVersion.endsWith(SNAPSHOT)) {
                     long instant = System.currentTimeMillis();
-                    adjustedVersion = pManifestVersion.replace("-SNAPSHOT",
+                    adjustedVersion = pManifestVersion.replace(SNAPSHOT,
                             "." + Long.toString(instant));
                 } else
 
@@ -789,9 +789,9 @@ public final class DefaultArtifactTrackerManager
                 mversion = jarManifestHeaders
                         .get(pExtendedArtifactHandler.defaultVersionHeader());
 
-                if (mversion.endsWith("-SNAPSHOT")) {
+                if (mversion.endsWith(SNAPSHOT)) {
                     long instant = System.currentTimeMillis();
-                    mversion = mversion.replace("-SNAPSHOT",
+                    mversion = mversion.replace(SNAPSHOT,
                             "." + Long.toString(instant));
                 }
 
@@ -855,9 +855,8 @@ public final class DefaultArtifactTrackerManager
         Path adjustedOriginalFilePath = null;
         String msn = null;
         String mversion = null;
-        if (isVerbose())
-            LOG.info("   Found workspace project:'{}'",
-                    pDependencyArtifact.getArtifactId());
+        LOG.info("   Found workspace project:'{}'",
+                pDependencyArtifact.getArtifactId());
         if (pExtendedArtifactHandler.isManifestFileRequired()) {
             Path manifestFile = pExtendedArtifactHandler
                     .lookupManifestFileInProjectDirectory(pDependencyArtifact);
@@ -893,8 +892,7 @@ public final class DefaultArtifactTrackerManager
                 pExtendedArtifactHandler, pDependencyArtifact, pBundleConfig,
                 msn, mversion);
         adjustedOriginalFilePath = calculateWorkspaceArtifactOriginalFilePath(
-                pExtendedArtifactHandler, pDependencyArtifact, pBundleConfig,
-                msn, mversion);
+                pExtendedArtifactHandler, pDependencyArtifact, msn, mversion);
 
         result = MavenArtifactTracker
                 .builder(cacheDir, isGroupingByTypeDirectory(),

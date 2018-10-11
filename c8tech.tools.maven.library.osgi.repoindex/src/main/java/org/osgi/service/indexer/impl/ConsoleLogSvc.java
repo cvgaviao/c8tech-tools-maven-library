@@ -43,7 +43,7 @@ public class ConsoleLogSvc implements LogService {
     @Override
     public void log(ServiceReference sr, int level, String message,
             Throwable exception) {
-        PrintStream out = level <= LOG_WARNING ? System.err : System.out;
+        PrintStream out = level <= LOG_WARNING ? System.err : System.out; //NOSONAR
 
         StringBuilder builder = new StringBuilder();
         switch (level) {

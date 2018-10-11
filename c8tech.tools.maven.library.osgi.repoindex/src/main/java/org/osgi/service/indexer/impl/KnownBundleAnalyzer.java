@@ -59,9 +59,8 @@ public class KnownBundleAnalyzer implements ResourceAnalyzer {
     private Properties extraProperties = null;
 
     private final LogService log;
-    
-    private final boolean verbose;
 
+    private final boolean verbose;
 
     public KnownBundleAnalyzer(LogService log, boolean pVerbose) {
         this.log = log;
@@ -88,11 +87,12 @@ public class KnownBundleAnalyzer implements ResourceAnalyzer {
         }
     }
 
-    public KnownBundleAnalyzer(Properties properties, LogService log, boolean pVerbose) {
+    public KnownBundleAnalyzer(Properties properties, LogService log,
+            boolean pVerbose) {
         this.defaultProperties = properties;
         this.log = log;
         this.verbose = pVerbose;
-        
+
     }
 
     private static void processClause(String bundleRef, String clauseStr,
@@ -161,6 +161,9 @@ public class KnownBundleAnalyzer implements ResourceAnalyzer {
         SymbolicName resourceName;
         try {
             resourceName = Util.getSymbolicName(resource);
+            if (verbose) {
+                this.log.log(LogService.LOG_INFO, "Analyzing " + resourceName);
+            }
         } catch (IllegalArgumentException e) {
             this.log.log(LogService.LOG_DEBUG,
                     "Ignoring resource since it doesn't have a symbolic name.",
@@ -168,7 +171,8 @@ public class KnownBundleAnalyzer implements ResourceAnalyzer {
             // not a bundle, so return without analyzing
             return;
         } catch (IOException e) {
-            throw new AnalyzerException("Failure while analyzing a resource.", e);
+            throw new AnalyzerException("Failure while analyzing a resource.",
+                    e);
         }
 
         try {
@@ -187,7 +191,8 @@ public class KnownBundleAnalyzer implements ResourceAnalyzer {
                             propName, extraProperties, defaultProperties);
                 }
         } catch (IOException e) {
-            throw new AnalyzerException("", e);
+            throw new AnalyzerException("Failure while processing artifact.",
+                    e);
         }
     }
 

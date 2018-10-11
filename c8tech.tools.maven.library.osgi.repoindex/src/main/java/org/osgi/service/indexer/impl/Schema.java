@@ -46,4 +46,6 @@ public final class Schema {
 
     public static final String TYPE_VERSION = "VERSION";
 
+    private Schema() {
+    }
 }

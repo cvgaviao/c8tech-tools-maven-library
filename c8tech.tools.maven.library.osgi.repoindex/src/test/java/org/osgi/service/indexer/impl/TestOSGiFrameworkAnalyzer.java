@@ -36,7 +36,7 @@ public class TestOSGiFrameworkAnalyzer {
         JarResource input = new JarResource(new File(getClass()
                 .getResource("/testdata/org.apache.felix.framework-4.0.2.jar")
                 .getPath()));
-        new BundleAnalyzer(new NullLogSvc(), true).analyzeResource(input, caps,
+        new BundleAnalyzer(new NullLogSvc()).analyzeResource(input, caps,
                 reqs);
         new OSGiFrameworkAnalyzer(new NullLogSvc(), true).analyzeResource(input,
                 caps, reqs);
@@ -65,7 +65,7 @@ public class TestOSGiFrameworkAnalyzer {
         JarResource inputResource = new JarResource(new File(getClass()
                 .getResource("/testdata/org.apache.felix.framework-4.0.2.jar")
                 .getPath()));
-        new BundleAnalyzer(new NullLogSvc(), true)
+        new BundleAnalyzer(new NullLogSvc())
                 .analyzeResource(inputResource, caps, reqs);
         new OSGiFrameworkAnalyzer(new NullLogSvc(), true)
                 .analyzeResource(inputResource, caps, reqs);
@@ -78,7 +78,7 @@ public class TestOSGiFrameworkAnalyzer {
                 .getResource(
                         "/testdata/org.eclipse.osgi_3.7.2.v20120110-1415.jar")
                 .getPath()));
-        new BundleAnalyzer(new NullLogSvc(), true)
+        new BundleAnalyzer(new NullLogSvc())
                 .analyzeResource(inputResource, caps, reqs);
         new OSGiFrameworkAnalyzer(new NullLogSvc(), true)
                 .analyzeResource(inputResource, caps, reqs);
@@ -90,7 +90,7 @@ public class TestOSGiFrameworkAnalyzer {
         inputResource = new JarResource(new File(getClass()
                 .getResource("/testdata/org.apache.felix.framework-3.2.2.jar")
                 .getPath()));
-        new BundleAnalyzer(new NullLogSvc(), true)
+        new BundleAnalyzer(new NullLogSvc())
                 .analyzeResource(inputResource, caps, reqs);
         new OSGiFrameworkAnalyzer(new NullLogSvc(), true)
                 .analyzeResource(inputResource, caps, reqs);
@@ -103,7 +103,7 @@ public class TestOSGiFrameworkAnalyzer {
                 .getResource(
                         "/testdata/org.eclipse.osgi_3.6.2.R36x_v20110210.jar")
                 .getPath()));
-        new BundleAnalyzer(new NullLogSvc(), true)
+        new BundleAnalyzer(new NullLogSvc())
                 .analyzeResource(inputResource, caps, reqs);
         new OSGiFrameworkAnalyzer(new NullLogSvc(), true)
                 .analyzeResource(inputResource, caps, reqs);
