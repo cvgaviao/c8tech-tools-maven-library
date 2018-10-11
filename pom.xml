@@ -25,7 +25,7 @@
     <groupId>br.com.c8tech.tools</groupId>
     <artifactId>c8tech-tools-maven-pom</artifactId>
     <version>0.5.1-SNAPSHOT</version>
-    <name>C8Tech Maven Tools - Parent/Aggregator POM</name>
+    <name>C8Tech Tools Maven Library</name>
     <description>
         A set of components aimed to support the building of maven plugins related to Java OSGi technology.    
     </description>

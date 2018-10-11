@@ -1,9 +1,9 @@
 [![CircleCI](https://circleci.com/gh/cvgaviao/c8tech-tools-maven-library.svg?style=svg)](https://circleci.com/gh/cvgaviao/c8tech-tools-maven-library)
 
-OSGi Subsystem Archive Generator 
-================================
+C8Tech Tools Maven Library 
+==========================
 
-This project consists in a set of java components aimed to support the building of maven plugins related to Java OSGi technology.    
+This multi-project repository consists of a set of sub-projects of java components aimed to support the building of maven plugins related to Java OSGi technology.    
 
 
 ------------
