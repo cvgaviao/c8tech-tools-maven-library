@@ -52,15 +52,14 @@ public class IndexerUnitTest {
             String expectedPath, String jarPath) throws Exception {
         StringWriter writer = new StringWriter();
         Map<String, String> props = new HashMap<String, String>();
-        props.put(Constants.ROOT_DIR,
-                IndexerUnitTest.class.getResource("/").getPath());
-        indexer.indexFragment(Collections.singleton(new File(
-                IndexerUnitTest.class.getResource("/" + jarPath).getPath())),
+        props.put(Constants.ROOT_DIR, "src/test/resources/");
+        indexer.indexFragment(
+                Collections
+                        .singleton(new File("src/test/resources/" + jarPath)),
                 writer, props);
 
-        String expected = Utils
-                .readStream(new FileInputStream(IndexerUnitTest.class
-                        .getResource("/" + expectedPath).getPath()));
+        String expected = Utils.readStream(
+                new FileInputStream(("src/test/resources/" + expectedPath)));
         String actual = writer.toString().trim();
         assertEquals(expected, actual);
     }
@@ -76,18 +75,15 @@ public class IndexerUnitTest {
         RepoIndex indexer = new RepoIndex(true);
         indexer.addAnalyzer(new WibbleAnalyzer(), null);
         Map<String, String> props = new HashMap<String, String>();
-        props.put(Constants.ROOT_DIR,
-                getClass().getResource("/").getPath());
+        props.put(Constants.ROOT_DIR, "src/test/resources/");
         StringWriter writer = new StringWriter();
         LinkedHashSet<File> files = new LinkedHashSet<File>();
-        files.add(new File(getClass()
-                .getResource("/testdata/01-bsn+version.jar").getPath()));
-        files.add(new File(getClass()
-                .getResource("/testdata/02-localization.jar").getPath()));
+        files.add(new File("src/test/resources/testdata/01-bsn+version.jar"));
+        files.add(new File("src/test/resources/testdata/02-localization.jar"));
 
         indexer.indexFragment(files, writer, props);
-        String expected = Utils.readStream(new FileInputStream(getClass()
-                .getResource("/testdata/fragment-wibble.txt").getPath()));
+        String expected = Utils.readStream(new FileInputStream(
+                "src/test/resources/testdata/fragment-wibble.txt"));
 
         assertEquals(expected, writer.toString().trim());
     }
@@ -98,8 +94,7 @@ public class IndexerUnitTest {
         indexer.addAnalyzer(new WibbleAnalyzer(),
                 FrameworkUtil.createFilter("(location=*sion.jar)"));
         Map<String, String> props = new HashMap<String, String>();
-        props.put(Constants.ROOT_DIR,
-                getClass().getResource("/").getPath());
+        props.put(Constants.ROOT_DIR, getClass().getResource("/").getPath());
         StringWriter writer = new StringWriter();
         LinkedHashSet<File> files = new LinkedHashSet<File>();
         files.add(new File(getClass()
@@ -109,8 +104,7 @@ public class IndexerUnitTest {
 
         indexer.indexFragment(files, writer, props);
         String expected = Utils.readStream(new FileInputStream(
-                getClass().getResource("/testdata/fragment-wibble-filtered.txt")
-                        .getPath()));
+                "src/test/resources/testdata/fragment-wibble-filtered.txt"));
 
         assertEquals(expected, writer.toString().trim());
     }
@@ -129,9 +123,8 @@ public class IndexerUnitTest {
                 .getResource("/testdata/01-bsn+version.jar").getPath())),
                 writer, props);
 
-        String expected = Utils.readStream(new FileInputStream(getClass()
-                .getResource("/testdata/fragment-subdir-absolute-path.txt")
-                .getPath()));
+        String expected = Utils.readStream(new FileInputStream(
+                "src/test/resources/testdata/fragment-subdir-absolute-path.txt"));
         assertEquals(expected, writer.toString().trim());
     }
 
@@ -148,8 +141,8 @@ public class IndexerUnitTest {
         config.put(Constants.PRETTY, "true");
         indexer.index(files, out, config);
 
-        String expected = Utils.readStream(new FileInputStream(
-                getClass().getResource("/testdata/empty.txt").getPath()));
+        String expected = Utils.readStream(
+                new FileInputStream("src/test/resources/testdata/empty.txt"));
         assertEquals(expected, out.toString());
     }
 
@@ -239,8 +232,8 @@ public class IndexerUnitTest {
     @Test
     public void testFragmentPlainJar() throws Exception {
         LogService mockLog = Mockito.mock(LogService.class);
-        RepoIndex indexer = new RepoIndex(mockLog,true);
-        indexer.addAnalyzer(new KnownBundleAnalyzer(mockLog,true),
+        RepoIndex indexer = new RepoIndex(mockLog, true);
+        indexer.addAnalyzer(new KnownBundleAnalyzer(mockLog, true),
                 FrameworkUtil.createFilter("(name=*)"));
 
         assertFragmentMatch(indexer, "testdata/fragment-plainjar.txt",
@@ -318,20 +311,17 @@ public class IndexerUnitTest {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         Set<File> files = new LinkedHashSet<File>();
-        files.add(new File(
-                getClass().getResource("/testdata/03-export.jar").getPath()));
-        files.add(new File(getClass()
-                .getResource("/testdata/06-requirebundle.jar").getPath()));
+        files.add(new File("src/test/resources/testdata/03-export.jar"));
+        files.add(new File("src/test/resources/testdata/06-requirebundle.jar"));
 
         Map<String, String> config = new HashMap<String, String>();
         config.put(RepoIndex.REPOSITORY_INCREMENT_OVERRIDE, "0");
-        config.put(Constants.ROOT_DIR,
-                getClass().getResource("/").getPath());
+        config.put(Constants.ROOT_DIR, "src/test/resources");
         config.put(Constants.REPOSITORY_NAME, "full-c+f");
         indexer.index(files, out, config);
 
         String unpackedXML = Utils.readStream(new FileInputStream(
-                getClass().getResource("/testdata/unpacked.xml").getPath()));
+                "src/test/resources/testdata/unpacked.xml"));
         String expected = unpackedXML.replaceAll("[\\n\\t]*", "");
         assertEquals(expected, Utils.decompress(out.toByteArray()));
     }
@@ -347,19 +337,16 @@ public class IndexerUnitTest {
                 false, false, true };
 
         String expectedPretty = Utils.readStream(new FileInputStream(
-                getClass().getResource("/testdata/full-03+06.txt").getPath()));
+                "src/test/resources/testdata/full-03+06.txt"));
         String expectedNotPretty = Utils.readStream(new FileInputStream(
-                getClass().getResource("/testdata/full-03+06-not-pretty.txt")
-                        .getPath()));
+                ("src/test/resources/testdata/full-03+06-not-pretty.txt")));
 
         RepoIndex indexer = new RepoIndex(true);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         Set<File> files = new LinkedHashSet<File>();
-        files.add(new File(
-                getClass().getResource("/testdata/03-export.jar").getPath()));
-        files.add(new File(getClass()
-                .getResource("/testdata/06-requirebundle.jar").getPath()));
+        files.add(new File("src/test/resources/testdata/03-export.jar"));
+        files.add(new File("src/test/resources/testdata/06-requirebundle.jar"));
 
         Map<String, String> config = new HashMap<String, String>();
         config.put(Constants.ROOT_DIR,
@@ -369,8 +356,7 @@ public class IndexerUnitTest {
         for (Boolean pretty : pretties) {
             for (Boolean compression : compressions) {
                 config.put(RepoIndex.REPOSITORY_INCREMENT_OVERRIDE, "0");
-                config.put(Constants.ROOT_DIR,
-                        getClass().getResource("/").getPath());
+                config.put(Constants.ROOT_DIR, "src/test/resources/");
                 config.put(Constants.REPOSITORY_NAME, "full-c+f");
                 if (pretty != null) {
                     config.put(Constants.PRETTY,
@@ -422,17 +408,17 @@ public class IndexerUnitTest {
         ResourceAnalyzer goodAnalyzer = mock(ResourceAnalyzer.class);
 
         LogService log = mock(LogService.class);
-        RepoIndex indexer = new RepoIndex(log,true);
+        RepoIndex indexer = new RepoIndex(log, true);
         indexer.addAnalyzer(badAnalyzer, null);
         indexer.addAnalyzer(goodAnalyzer, null);
 
         // Run the indexer
         Map<String, String> props = new HashMap<String, String>();
-        props.put(Constants.ROOT_DIR, getClass()
-                .getResource("/testdata/02-localization.jar").getPath());
+        props.put(Constants.ROOT_DIR,
+                ("src/test/resources/testdata/02-localization.jar"));
         StringWriter writer = new StringWriter();
-        indexer.indexFragment(Collections.singleton(new File(getClass()
-                .getResource("/testdata/subdir/01-bsn+version.jar").getPath())),
+        indexer.indexFragment(Collections.singleton(new File(
+                "src/test/resources/testdata/subdir/01-bsn+version.jar")),
                 writer, props);
 
         // The "good" analyzer should have been called
@@ -455,7 +441,7 @@ public class IndexerUnitTest {
                 .getResource("/testdata/known-bundles.properties").getPath()));
 
         RepoIndex indexer = new RepoIndex(true);
-        indexer.addAnalyzer(new KnownBundleAnalyzer(props, log,true),
+        indexer.addAnalyzer(new KnownBundleAnalyzer(props, log, true),
                 FrameworkUtil.createFilter("(name=*)"));
         assertFragmentMatch(indexer,
                 "testdata/org.apache.felix.eventadmin-1.2.14.xml",
@@ -466,7 +452,7 @@ public class IndexerUnitTest {
     public void testRecogniseAriesBlueprint() throws Exception {
         LogService log = mock(LogService.class);
         RepoIndex indexer = new RepoIndex(true);
-        indexer.addAnalyzer(new KnownBundleAnalyzer(log,true),
+        indexer.addAnalyzer(new KnownBundleAnalyzer(log, true),
                 FrameworkUtil.createFilter("(name=*)"));
         assertFragmentMatch(indexer,
                 "testdata/org.apache.aries.blueprint-1.0.0.xml",
@@ -477,7 +463,7 @@ public class IndexerUnitTest {
     public void testRecogniseFelixJetty() throws Exception {
         LogService log = mock(LogService.class);
         RepoIndex indexer = new RepoIndex(true);
-        indexer.addAnalyzer(new KnownBundleAnalyzer(log,true),
+        indexer.addAnalyzer(new KnownBundleAnalyzer(log, true),
                 FrameworkUtil.createFilter("(name=*)"));
         assertFragmentMatch(indexer,
                 "testdata/org.apache.felix.http.jetty-2.2.0.xml",
@@ -488,7 +474,7 @@ public class IndexerUnitTest {
     public void testRecogniseFelixSCR() throws Exception {
         LogService log = mock(LogService.class);
         RepoIndex indexer = new RepoIndex(true);
-        indexer.addAnalyzer(new KnownBundleAnalyzer(log,true),
+        indexer.addAnalyzer(new KnownBundleAnalyzer(log, true),
                 FrameworkUtil.createFilter("(name=*)"));
         assertFragmentMatch(indexer, "testdata/org.apache.felix.scr-1.6.0.xml",
                 "testdata/org.apache.felix.scr-1.6.0.jar");
@@ -498,7 +484,7 @@ public class IndexerUnitTest {
     public void testRecogniseGeminiBlueprint() throws Exception {
         LogService log = mock(LogService.class);
         RepoIndex indexer = new RepoIndex(true);
-        indexer.addAnalyzer(new KnownBundleAnalyzer(log,true),
+        indexer.addAnalyzer(new KnownBundleAnalyzer(log, true),
                 FrameworkUtil.createFilter("(name=*)"));
         assertFragmentMatch(indexer,
                 "testdata/gemini-blueprint-extender-1.0.0.RELEASE.xml",
@@ -508,16 +494,15 @@ public class IndexerUnitTest {
     @Test
     public void testRemoveDisallowed() throws Exception {
         LogService log = mock(LogService.class);
-        RepoIndex indexer = new RepoIndex(log,true);
+        RepoIndex indexer = new RepoIndex(log, true);
         indexer.addAnalyzer(new NaughtyAnalyzer(), null);
 
         Map<String, String> props = new HashMap<String, String>();
-        props.put(Constants.ROOT_DIR,
-                getClass().getResource("/testdata/").getPath());
+        props.put(Constants.ROOT_DIR, "src/test/resources/testdata/");
 
         StringWriter writer = new StringWriter();
-        indexer.indexFragment(Collections.singleton(new File(getClass()
-                .getResource("/testdata/subdir/01-bsn+version.jar").getPath())),
+        indexer.indexFragment(Collections.singleton(new File(
+                "src/test/resources/testdata/subdir/01-bsn+version.jar")),
                 writer, props);
 
         verify(log).log(eq(LogService.LOG_ERROR), anyString(),
@@ -529,16 +514,16 @@ public class IndexerUnitTest {
         RepoIndex indexer = new RepoIndex(true);
 
         Map<String, String> props = new HashMap<String, String>();
-        props.put(Constants.ROOT_DIR,
-                getClass().getResource("/testdata").getPath());
+        props.put(Constants.ROOT_DIR, "src/test/resources/testdata");
 
         StringWriter writer = new StringWriter();
-        indexer.indexFragment(Collections.singleton(new File(getClass()
-                .getResource("/testdata/01-bsn+version.jar").getPath())),
+        indexer.indexFragment(
+                Collections.singleton(new File(
+                        "src/test/resources/testdata/01-bsn+version.jar")),
                 writer, props);
 
-        String expected = Utils.readStream(new FileInputStream(getClass()
-                .getResource("/testdata/fragment-subdir1.txt").getPath()));
+        String expected = Utils.readStream(new FileInputStream(
+                "src/test/resources/testdata/fragment-subdir1.txt"));
         assertEquals(expected, writer.toString().trim());
     }
 
@@ -547,16 +532,15 @@ public class IndexerUnitTest {
         RepoIndex indexer = new RepoIndex(true);
 
         Map<String, String> props = new HashMap<String, String>();
-        props.put(Constants.ROOT_DIR,
-                getClass().getResource("/testdata").getPath());
+        props.put(Constants.ROOT_DIR, "src/test/resources/testdata");
 
         StringWriter writer = new StringWriter();
-        indexer.indexFragment(Collections.singleton(new File(getClass()
-                .getResource("/testdata/subdir/01-bsn+version.jar").getPath())),
+        indexer.indexFragment(Collections.singleton(new File(
+                "src/test/resources/testdata/subdir/01-bsn+version.jar")),
                 writer, props);
 
-        String expected = Utils.readStream(new FileInputStream(getClass()
-                .getResource("/testdata/fragment-subdir2.txt").getPath()));
+        String expected = Utils.readStream(new FileInputStream(
+                "src/test/resources/testdata/fragment-subdir2.txt"));
         assertEquals(expected, writer.toString().trim());
     }
 }
