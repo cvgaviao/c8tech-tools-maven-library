@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="C8Tech OSGi Subsystem Maven Plugin"
+<project name="C8Tech Tools Maven Library"
     xmlns="http://maven.apache.org/DECORATION/1.4.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.4.0
@@ -18,7 +18,7 @@
             <gitHub>
                 <projectId>cvgaviao/c8tech-tools-maven-library</projectId>
                 <ribbonOrientation>right</ribbonOrientation>
-                <ribbonColor>blue</ribbonColor>
+                <ribbonColor>green</ribbonColor>
             </gitHub>
         </fluidoSkin>
     </custom>
