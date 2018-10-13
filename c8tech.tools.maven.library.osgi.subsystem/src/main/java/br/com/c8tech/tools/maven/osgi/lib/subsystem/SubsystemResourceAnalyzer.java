@@ -14,6 +14,8 @@
 package br.com.c8tech.tools.maven.osgi.lib.subsystem;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -26,15 +28,16 @@ import org.osgi.service.indexer.Namespaces;
 import org.osgi.service.indexer.Resource;
 import org.osgi.service.indexer.ResourceAnalyzer;
 import org.osgi.service.indexer.impl.BundleAnalyzer;
+import org.osgi.service.indexer.impl.GeneratorState;
 import org.osgi.service.indexer.impl.MimeType;
+import org.osgi.service.indexer.impl.RepoIndex;
 
 public class SubsystemResourceAnalyzer implements ResourceAnalyzer {
-
 
     @Override
     public void analyzeResource(Resource resource,
             List<Capability> capabilities, List<Requirement> requirements)
-                    throws AnalyzerException {
+            throws AnalyzerException {
         MimeType mimeType = MimeType.SUBSYSTEM;
         try {
             Resource io = resource.getChild("OSGI-INF/SUBSYSTEM.MF");
@@ -57,8 +60,34 @@ public class SubsystemResourceAnalyzer implements ResourceAnalyzer {
     }
 
 
-
-
+    /**
+     * Method borrowed from org.osgi.service.indexer.impl.BundleAnalyzer.
+     * 
+     * @param resource
+     * @return
+     * @throws IOException
+     */
+    private static String calculateLocation(Resource resource) {
+        Path resultPath;
+        Path resourcePath = Paths.get(resource.getLocation());
+        GeneratorState state = RepoIndex.getStateLocal();
+        if (state != null) {
+            Path rootPath = state.getRootPath();
+            Path artifactCopyDirPath = state.getSubsystemCopyDirPath();
+            if (artifactCopyDirPath != null) {
+                resourcePath = artifactCopyDirPath.normalize()
+                        .resolve(resourcePath.getFileName());
+            }
+            if (state.isForceAbsolutePath()) {
+                resultPath = resourcePath.toAbsolutePath().normalize();
+            } else {
+                resultPath = rootPath.normalize().relativize(resourcePath);
+            }
+        } else {
+            resultPath = resourcePath.toAbsolutePath().normalize();
+        }
+        return resultPath.toString();
+    }
 
     /**
      * Method borrowed from org.osgi.service.indexer.impl.BundleAnalyzer.
@@ -74,7 +103,8 @@ public class SubsystemResourceAnalyzer implements ResourceAnalyzer {
         }
         String capsStr = subsystemManifest.getProvideCapabilityHeader()
                 .getValue();
-        BundleAnalyzer.buildFromHeader(capsStr, builder -> caps.add(builder.buildCapability()));
+        BundleAnalyzer.buildFromHeader(capsStr,
+                builder -> caps.add(builder.buildCapability()));
     }
 
     /**
@@ -89,10 +119,23 @@ public class SubsystemResourceAnalyzer implements ResourceAnalyzer {
      */
     private static void doContent(Resource resource, MimeType mimeType,
             List<? super Capability> capabilities)
-                    throws IOException, NoSuchAlgorithmException {
-        
-        BundleAnalyzer.doContent(resource, mimeType, capabilities);
+            throws IOException, NoSuchAlgorithmException {
 
+        Builder builder = new Builder().setNamespace(Namespaces.NS_CONTENT);
+
+        String sha = BundleAnalyzer.calculateSHA(resource);
+        builder.addAttribute(Namespaces.NS_CONTENT, sha);
+
+        String location = calculateLocation(resource);
+        builder.addAttribute(Namespaces.ATTR_CONTENT_URL, location);
+
+        long size = resource.getSize();
+        if (size > 0L)
+            builder.addAttribute(Namespaces.ATTR_CONTENT_SIZE, size);
+
+        builder.addAttribute(Namespaces.ATTR_CONTENT_MIME, mimeType.toString());
+
+        capabilities.add(builder.buildCapability());
     }
 
     private static void doRequirements(SubsystemManifest subsystemManifest,
@@ -102,7 +145,8 @@ public class SubsystemResourceAnalyzer implements ResourceAnalyzer {
         }
         String reqsStr = subsystemManifest.getRequireCapabilityHeader()
                 .getValue();
-        BundleAnalyzer.buildFromHeader(reqsStr, builder -> reqs.add(builder.buildRequirement()));
+        BundleAnalyzer.buildFromHeader(reqsStr,
+                builder -> reqs.add(builder.buildRequirement()));
     }
 
     private static void doSubsystemIdentity(SubsystemManifest subsystemManifest,

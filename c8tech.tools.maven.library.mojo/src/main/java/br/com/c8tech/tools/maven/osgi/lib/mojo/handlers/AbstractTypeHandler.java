@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.MissingResourceException;
 import java.util.PropertyResourceBundle;
 import java.util.Set;
@@ -134,16 +135,14 @@ public abstract class AbstractTypeHandler implements ExtendedArtifactHandler {
             Manifest manifest) {
         Map<String, String> result = new HashMap<>(
                 manifest.getMainAttributes().size());
-        Set<Object> keys = manifest.getMainAttributes().keySet();
-        for (Object key : keys) {
-            String keystr = key.toString();
+        Set<Entry<Object, Object>> entries = manifest.getMainAttributes()
+                .entrySet();
+        for (Entry<Object, Object> entry : entries) {
+            String keystr = entry.getKey().toString();
             if (keystr.startsWith(BUNDLE_SYMBOLICNAME)) {
-                keystr = key.toString().split(";")[0];
+                keystr = keystr.split(";")[0];
             }
-
-            if (manifest.getMainAttributes().get(keystr) != null)
-                result.put(keystr,
-                        manifest.getMainAttributes().get(keystr).toString());
+            result.put(keystr, entry.getValue().toString());
         }
         return result;
     }

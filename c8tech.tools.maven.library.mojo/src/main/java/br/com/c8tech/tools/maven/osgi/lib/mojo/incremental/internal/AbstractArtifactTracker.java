@@ -282,9 +282,9 @@ public abstract class AbstractArtifactTracker<I extends AbstractArtifactTracker<
     @Override
     public String toString() {
         return String.format(
-                "ArtifactTracker [groupId=%s, artifactId=%s, optional=%s, scope=%s, "
+                "ArtifactTracker [ws=%s, groupId=%s, artifactId=%s, optional=%s, scope=%s, "
                         + "type=%s, version=%s, toEmbed=%s, toCache=%s, cached=%s, startLevel=%s]",
-                groupId, artifactId, optional, scope, type, version,
-                toBeEmbedded, toBeCached, cached, startLevel);
+                workspaceProject, groupId, artifactId, optional, scope, type,
+                version, toBeEmbedded, toBeCached, cached, startLevel);
     }
 }

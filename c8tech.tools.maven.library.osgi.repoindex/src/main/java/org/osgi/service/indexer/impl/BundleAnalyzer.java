@@ -162,7 +162,7 @@ public class BundleAnalyzer implements ResourceAnalyzer {
 
     }
 
-    private static String calculateSHA(Resource resource)
+    public static String calculateSHA(Resource resource)
             throws IOException, NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance(SHA_256);
         byte[] buf = new byte[1024];

@@ -634,7 +634,7 @@ public final class DefaultArtifactTrackerManager
             archiver.setDestFile(pArtifactPath.toFile());
             archiver.addFileSet(new DefaultFileSet(wdir));
             archiver.createArchive();
-            pArtifactTracker.setCached();
+
         } catch (ArchiverException | IOException e) {
             throw new MojoExecutionException(
                     "Failure while packaging a workspace project.", e);
@@ -874,16 +874,12 @@ public final class DefaultArtifactTrackerManager
         }
 
         if (mversion == null) {
-            mversion = pBundleConfig != null
-                    && !pBundleConfig.getVersion().isEmpty()
-                            ? pBundleConfig.getVersion()
-                            : pDependencyArtifact.getVersion();
+            throw new MojoExecutionException("The manifest doesn't contains a "
+                    + pExtendedArtifactHandler.defaultSymbolicNameHeader());
         }
         if (msn == null) {
-            msn = pBundleConfig != null
-                    && !pBundleConfig.getArtifactId().isEmpty()
-                            ? pBundleConfig.getArtifactId()
-                            : pDependencyArtifact.getArtifactId();
+            throw new MojoExecutionException("The manifest doesn't contains a "
+                    + pExtendedArtifactHandler.defaultVersionHeader());
         }
 
         Path cacheDir = pBundleConfig != null ? pBundleConfig.getCachePath()
@@ -983,10 +979,10 @@ public final class DefaultArtifactTrackerManager
     }
 
     @Override
-    public int resolveMavenArtifacts(Set<String> pEmbeddableScopes) // NOSONAR
+    public int resolveMavenArtifacts(Set<String> pScopes) // NOSONAR
             throws MojoExecutionException, MojoFailureException {
 
-        return resolveMavenArtifacts(Collections.emptySet(), pEmbeddableScopes);
+        return resolveMavenArtifacts(Collections.emptySet(), pScopes);
     }
 
     @Override
