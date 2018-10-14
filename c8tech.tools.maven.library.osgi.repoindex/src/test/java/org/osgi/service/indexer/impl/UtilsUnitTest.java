@@ -23,24 +23,21 @@ import org.junit.jupiter.api.Test;
 public class UtilsUnitTest {
 
     @Test
-    public void testFindPlainPath() throws Exception {
-        JarResource jar = new JarResource(new File(
-                "src/test/resources/testdata/org.eclipse.osgi_3.7.2.v20120110-1415.jar"));
-        List<String> list = Util.findMatchingPaths(jar,
-                "META-INF/services/org.osgi.framework.launch.FrameworkFactory");
-        assertEquals(1, list.size());
-        assertEquals(
-                "META-INF/services/org.osgi.framework.launch.FrameworkFactory",
-                list.get(0));
-    }
+	public void testFindPlainPath() throws Exception {
+		JarResource jar = new JarResource(new File(getClass()
+                .getResource("/testdata/org.eclipse.osgi_3.7.2.v20120110-1415.jar").getPath()));
+		List<String> list = Util.findMatchingPaths(jar, "META-INF/services/org.osgi.framework.launch.FrameworkFactory");
+		assertEquals(1, list.size());
+		assertEquals("META-INF/services/org.osgi.framework.launch.FrameworkFactory", list.get(0));
+	}
 
     @Test
-    public void testFindGlobPattern() throws Exception {
-        JarResource jar = new JarResource(new File(
-                "src/test/resources/testdata/org.eclipse.osgi_3.7.2.v20120110-1415.jar"));
-        List<String> list = Util.findMatchingPaths(jar, "*.profile");
+	public void testFindGlobPattern() throws Exception {
+		JarResource jar = new JarResource(new File(getClass()
+                .getResource("/testdata/org.eclipse.osgi_3.7.2.v20120110-1415.jar").getPath()));
+		List<String> list = Util.findMatchingPaths(jar, "*.profile");
 
-        assertEquals(12, list.size());
-        assertEquals("CDC-1.0_Foundation-1.0.profile", list.get(0));
-    }
+		assertEquals(12, list.size());
+		assertEquals("CDC-1.0_Foundation-1.0.profile", list.get(0));
+	}
 }

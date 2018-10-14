@@ -26,66 +26,62 @@ import org.osgi.service.indexer.Resource;
 public class JarResourceUnitTest {
 
     @Test
-    public void testJarName() throws Exception {
-        JarResource resource = new JarResource(
-                new File("src/test/resources/testdata/01-bsn+version.jar"));
-        String location = resource.getLocation();
-        assertEquals("testdata/01-bsn+version.jar",
-                location.substring(location.length() - 27));
-    }
+	public void testJarName() throws Exception {
+		JarResource resource = new JarResource(new File(getClass()
+                .getResource("/testdata/01-bsn+version.jar").getPath()));
+		String location = resource.getLocation();
+		assertEquals("testdata/01-bsn+version.jar", location.substring(location.length()-27));
+	}
 
     @Test
-    public void testJarSize() throws Exception {
-        JarResource resource = new JarResource(
-                new File("src/test/resources/testdata/01-bsn+version.jar"));
-        assertEquals(1104L, resource.getSize());
-    }
+	public void testJarSize() throws Exception {
+		JarResource resource = new JarResource(new File(getClass()
+                .getResource("/testdata/01-bsn+version.jar").getPath()));
+		assertEquals(1104L, resource.getSize());
+	}
 
     @Test
-    public void testJarListing() throws Exception {
-        JarResource resource = new JarResource(
-                new File("src/test/resources/testdata/01-bsn+version.jar"));
-        List<String> children = resource.listChildren("org/example/a/");
-        assertEquals(2, children.size());
-        assertEquals("A.class", children.get(0));
-        assertEquals("packageinfo", children.get(1));
-    }
+	public void testJarListing() throws Exception {
+		JarResource resource = new JarResource(new File(getClass()
+                .getResource("/testdata/01-bsn+version.jar").getPath()));
+		List<String> children = resource.listChildren("org/example/a/");
+		assertEquals(2, children.size());
+		assertEquals("A.class", children.get(0));
+		assertEquals("packageinfo", children.get(1));
+	}
 
     @Test
-    public void testJarListingInvalidPaths() throws Exception {
-        JarResource resource = new JarResource(
-                new File("src/test/resources/testdata/01-bsn+version.jar"));
-        assertNull(resource.listChildren("org/wibble/"));
-        assertNull(resource.listChildren("org/example/a"));
-    }
+	public void testJarListingInvalidPaths() throws Exception {
+		JarResource resource = new JarResource(new File(getClass()
+                .getResource("/testdata/01-bsn+version.jar").getPath()));
+		assertNull(resource.listChildren("org/wibble/"));
+		assertNull(resource.listChildren("org/example/a"));
+	}
 
     @Test
-    public void testJarListingRoot() throws Exception {
-        JarResource resource = new JarResource(new File(
-                "src/test/resources/testdata/org.eclipse.osgi_3.7.2.v20120110-1415.jar"));
-        List<String> children = resource.listChildren("");
-        assertEquals(21, children.size());
-        assertEquals("META-INF/", children.get(0));
-    }
+	public void testJarListingRoot() throws Exception {
+		JarResource resource = new JarResource(new File(getClass()
+                .getResource("/testdata/org.eclipse.osgi_3.7.2.v20120110-1415.jar").getPath()));
+		List<String> children = resource.listChildren("");
+		assertEquals(21, children.size());
+		assertEquals("META-INF/", children.get(0));
+	}
 
     @Test
-    public void testJarFileContent() throws Exception {
-        JarResource resource = new JarResource(
-                new File("src/test/resources/testdata/01-bsn+version.jar"));
-        Resource pkgInfoResource = resource
-                .getChild("org/example/a/packageinfo");
+	public void testJarFileContent() throws Exception {
+		JarResource resource = new JarResource(new File(getClass()
+                .getResource("/testdata/01-bsn+version.jar").getPath()));
+		Resource pkgInfoResource = resource.getChild("org/example/a/packageinfo");
 
-        assertEquals("version 1.0",
-                Utils.readStream(pkgInfoResource.getStream()));
-    }
+		assertEquals("version 1.0", Utils.readStream(pkgInfoResource.getStream()));
+	}
 
     @Test
-    public void testJarManifest() throws Exception {
-        JarResource resource = new JarResource(
-                new File("src/test/resources/testdata/01-bsn+version.jar"));
-        Manifest manifest = resource.getManifest();
-        assertEquals("org.example.a",
-                manifest.getMainAttributes().getValue("BUNDLE-SymbolicName"));
-    }
+	public void testJarManifest() throws Exception {
+		JarResource resource = new JarResource(new File(getClass()
+                .getResource("/testdata/01-bsn+version.jar").getPath()));
+		Manifest manifest = resource.getManifest();
+		assertEquals("org.example.a", manifest.getMainAttributes().getValue("BUNDLE-SymbolicName"));
+	}
 
 }

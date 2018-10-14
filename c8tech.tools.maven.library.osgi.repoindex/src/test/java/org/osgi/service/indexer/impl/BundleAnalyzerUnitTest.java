@@ -34,10 +34,9 @@ public class BundleAnalyzerUnitTest {
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
-        a.analyzeResource(
-                new JarResource(new File(
-                        "src/test/resources/testdata/01-bsn+version.jar")),
-                caps, reqs);
+        a.analyzeResource(new JarResource(new File(getClass()
+                .getResource("/testdata/01-bsn+version.jar").getPath())), caps,
+                reqs);
 
         assertEquals(4, caps.size());
 
@@ -69,8 +68,8 @@ public class BundleAnalyzerUnitTest {
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
         a.analyzeResource(
-                new JarResource(
-                        new File("src/test/resources/testdata/03-export.jar")),
+                new JarResource(new File(getClass()
+                        .getResource("/testdata/03-export.jar").getPath())),
                 caps, reqs);
 
         Capability export = findCaps("osgi.wiring.package", caps).get(0);
@@ -86,10 +85,9 @@ public class BundleAnalyzerUnitTest {
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
-        a.analyzeResource(
-                new JarResource(new File(
-                        "src/test/resources/testdata/04-export+uses.jar")),
-                caps, reqs);
+        a.analyzeResource(new JarResource(new File(getClass()
+                .getResource("/testdata/04-export+uses.jar").getPath())), caps,
+                reqs);
 
         List<Capability> exports = findCaps("osgi.wiring.package", caps);
         assertEquals(2, exports.size());
@@ -112,10 +110,9 @@ public class BundleAnalyzerUnitTest {
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
-        a.analyzeResource(
-                new JarResource(new File(
-                        "src/test/resources/testdata/04-export+uses.jar")),
-                caps, reqs);
+        a.analyzeResource(new JarResource(new File(getClass()
+                .getResource("/testdata/04-export+uses.jar").getPath())), caps,
+                reqs);
 
         List<Capability> exports = findCaps("osgi.wiring.package", caps);
         assertEquals(2, exports.size());
@@ -158,9 +155,8 @@ public class BundleAnalyzerUnitTest {
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
-        a.analyzeResource(
-                new JarResource(new File(
-                        "src/test/resources/testdata/06-requirebundle.jar")),
+        a.analyzeResource(new JarResource(new File(getClass()
+                .getResource("/testdata/06-requirebundle.jar").getPath())),
                 caps, reqs);
 
         List<Requirement> requires = findReqs("osgi.wiring.bundle", reqs);
@@ -176,9 +172,8 @@ public class BundleAnalyzerUnitTest {
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
-        a.analyzeResource(
-                new JarResource(new File(
-                        "src/test/resources/testdata/07-optionalimport.jar")),
+        a.analyzeResource(new JarResource(new File(getClass()
+                .getResource("/testdata/07-optionalimport.jar").getPath())),
                 caps, reqs);
 
         Requirement pkgImport = findReqs("osgi.wiring.package", reqs).get(0);
@@ -194,10 +189,9 @@ public class BundleAnalyzerUnitTest {
         LinkedList<Capability> caps = new LinkedList<Capability>();
         LinkedList<Requirement> reqs = new LinkedList<Requirement>();
 
-        a.analyzeResource(
-                new JarResource(new File(
-                        "src/test/resources/testdata/08-fragmenthost.jar")),
-                caps, reqs);
+        a.analyzeResource(new JarResource(new File(getClass()
+                .getResource("/testdata/08-fragmenthost.jar").getPath())), caps,
+                reqs);
 
         Requirement req = findReqs("osgi.wiring.host", reqs).get(0);
         assertEquals(
