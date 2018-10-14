@@ -34,3 +34,5 @@ src-gen/
 dev/
 license-header-epl-v10.txt
 
+pom.xml.releaseBackup*
+/release.properties
