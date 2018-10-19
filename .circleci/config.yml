@@ -67,10 +67,11 @@ jobs: # a collection of steps
                 git config --global user.name "c8tech releaser bot"
                 mvn -B -s .circleci/settings.xml release:prepare -DdryRun=${C8TECH_RELEASE_DRYRUN} -Darguments="-s .circleci/settings.xml" -Dc8tech.build.release -DreleaseVersion=$RELEASE_VERSION -DdevelopmentVersion=$NEXT_VERSION -DscmCommentPrefix="release: "
               else
-                if ["${CIRCLE_TAG}" == v.*]; then
+                if ["${CIRCLE_TAG}" == v*]; then
+                   echo "starting deployment of version= ${CIRCLE_TAG}" 
                    mvn -B -s .circleci/settings.xml deploy -Dc8tech.build.release -Dc8tech.build.test.coverage
                 else
-                   mvn -B -s .circleci/settings.xml deploy
+                   mvn -B -s .circleci/settings.xml deploy 
                 fi       
               fi
             fi
