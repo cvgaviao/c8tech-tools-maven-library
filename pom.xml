@@ -22,7 +22,7 @@
 
     <groupId>br.com.c8tech.tools</groupId>
     <artifactId>c8tech-tools-maven-pom</artifactId>
-    <version>0.7.3-SNAPSHOT</version>
+    <version>0.7.4</version>
     <name>C8Tech Tools Maven Library</name>
     <description>
         A set of components aimed to support the building of maven plugins related to Java OSGi technology.    
@@ -35,7 +35,7 @@
         <connection>${c8tech.scm.connection}</connection>
         <developerConnection>${c8tech.scm.connection.dev}</developerConnection>
         <url>${c8tech.scm.url}</url>
-        <tag>HEAD</tag>
+        <tag>v0.7.4</tag>
     </scm>
     <distributionManagement>
         <site>
