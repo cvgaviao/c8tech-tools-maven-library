@@ -167,16 +167,16 @@
                         <!-- org.apache.aries.subsystem.core;scope=provided;inline=true -->
                         <!-- </Embed-Dependency> -->
                             <_exportcontents>
-                                org.apache.aries.subsystem.core.archive,
-                                org.apache.aries.subsystem.core.capabilityset,
-                                org.apache.aries.subsystem.core.internal,
+                                org.apache.aries.subsystem.core.archive;version="2.0.10",
+                                org.apache.aries.subsystem.core.capabilityset;version="2.0.10",
+                                org.apache.aries.subsystem.core.internal;version="2.0.10",
+                                org.apache.aries.subsystem.core.repository;version="2.0.10",
                                 org.osgi.service.subsystem;-split-package:=merge-first,
-                                org.apache.aries.util.manifest,
-                                org.apache.aries.util,
-                                org.apache.aries.util.filesystem,
-                                org.apache.aries.subsystem.core.repository,
+                                org.apache.aries.util;version="1.1.3",
+                                org.apache.aries.util.manifest;version="1.1.3",
+                                org.apache.aries.util.filesystem;version="1.1.3",
                                 org.osgi.service.repository,
-                                org.apache.aries.subsystem
+                                org.apache.aries.subsystem;version="2.0.10"
                             </_exportcontents>
                         </instructions>
                     </configuration>
