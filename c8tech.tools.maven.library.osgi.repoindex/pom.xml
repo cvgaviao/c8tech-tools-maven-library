@@ -22,7 +22,7 @@
     <artifactId>c8tech.tools.maven.library.osgi.repoindex</artifactId>
     <name>OSGi Repository Indexed File Generation Library</name>
     <description>An OSGi bundle library providing a repository indexer service based on the OSGi Alliance BIndex tool.</description>
-    <packaging>takari-jar</packaging>
+<!--     <packaging>takari-jar</packaging> -->
 
     <properties>
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>

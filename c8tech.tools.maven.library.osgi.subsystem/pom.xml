@@ -22,7 +22,6 @@
     <artifactId>c8tech.tools.maven.library.osgi.subsystem</artifactId>
     <name>OSGi Subsystem Archive Generation Library</name>
     <description>A OSGi bundle library providing classes to support OSGi Subsystem handling.</description>
-    <packaging>takari-jar</packaging>
 
     <!-- Due a maven limitation, this MUST be replicated to all children -->
     <url>${c8tech.project.site.url}</url>

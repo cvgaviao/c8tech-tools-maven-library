@@ -17,7 +17,7 @@
     <parent>
         <groupId>br.com.c8tech.releng</groupId>
         <artifactId>maven-parent-osgi</artifactId>
-        <version>5.2</version>
+        <version>5.3-SNAPSHOT</version>
     </parent>
 
     <groupId>br.com.c8tech.tools</groupId>
@@ -80,7 +80,7 @@
     <properties>
         <!-- the current version of releng POMs used by children projects. -->
         <!-- must be equal to this project version -->
-        <version.c8tech.releng>5.2</version.c8tech.releng>
+        <version.c8tech.releng>5.3-SNAPSHOT</version.c8tech.releng>
 
         <c8tech.scm.repo.name>c8tech-tools-maven-library</c8tech.scm.repo.name>
 
