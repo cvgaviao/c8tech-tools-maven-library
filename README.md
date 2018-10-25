@@ -1,5 +1,7 @@
 [![CircleCI](https://circleci.com/gh/cvgaviao/c8tech-tools-maven-library.svg?style=svg)](https://circleci.com/gh/cvgaviao/c8tech-tools-maven-library)
 
+[![Maven Central](https://img.shields.io/maven-central/v/br.com.c8tech.tools/c8tech-tools-maven-pom.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22br.com.c8tech.tools%22%20AND%20a:%22c8tech-tools-maven-pom%22)
+
 C8Tech Tools Maven Library 
 ==========================
 
