@@ -14,6 +14,7 @@
 package br.com.c8tech.tools.maven.osgi.lib.mojo.filters;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -41,7 +42,10 @@ public class ValidTypeArtifactFilter implements ArtifactFilter {
         if (pArtifact == null || pArtifact.getType() == null) {
             return false;
         }
-        return validArtifactTypes.contains(pArtifact.getType());
+        String type = pArtifact.getType();
+        Optional<String> result = validArtifactTypes.stream()
+                .filter(t -> t.trim().equals(type.trim())).findFirst();
+        return result.isPresent();
     }
 
 }

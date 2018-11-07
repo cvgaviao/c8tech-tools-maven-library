@@ -804,9 +804,6 @@ public final class DefaultArtifactTrackerManager
             jarManifestHeaders = Collections.emptyMap();
         }
 
-        adjustedCachedFilePath = calculateArtifactCachedFilePath(cacheDir,
-                pExtendedArtifactHandler, pDependency, pBundleConfig, msn,
-                mversion);
 
         if (mversion == null) {
             if (pBundleConfig != null && pBundleConfig.getVersion() != null
@@ -815,6 +812,10 @@ public final class DefaultArtifactTrackerManager
             } else
                 mversion = pDependency.getVersion();
         }
+
+        adjustedCachedFilePath = calculateArtifactCachedFilePath(cacheDir,
+                pExtendedArtifactHandler, pDependency, pBundleConfig, msn,
+                mversion);
 
         result = MavenArtifactTracker
                 .builder(cacheDir, isGroupingByTypeDirectory(),
