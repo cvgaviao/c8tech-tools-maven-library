@@ -229,23 +229,22 @@ public class BundleAnalyzer implements ResourceAnalyzer {
     }
 
     private static void doBundleAndHost(Resource resource,
-            List<? super Capability> caps) throws IOException {
-        Builder bundleBuilder = new Builder()
-                .setNamespace(Namespaces.NS_WIRING_BUNDLE);
-        Builder hostBuilder = new Builder()
-                .setNamespace(Namespaces.NS_WIRING_HOST);
-        boolean allowFragments = true;
+            MimeType pMimeType, List<? super Capability> caps) throws IOException {
 
         Attributes attribs = resource.getManifest().getMainAttributes();
         if (attribs.getValue(Constants.FRAGMENT_HOST) != null)
             return;
 
+        boolean isFragment = pMimeType == MimeType.FRAGMENT;
+        
+        boolean allowFragments = true;
+        Builder bundleBuilder = new Builder()
+                .setNamespace(Namespaces.NS_WIRING_BUNDLE);
+
         SymbolicName bsn = Util.getSymbolicName(resource);
         Version version = Util.getVersion(resource);
 
         bundleBuilder.addAttribute(Namespaces.NS_WIRING_BUNDLE, bsn.getName())
-                .addAttribute(Constants.BUNDLE_VERSION_ATTRIBUTE, version);
-        hostBuilder.addAttribute(Namespaces.NS_WIRING_HOST, bsn.getName())
                 .addAttribute(Constants.BUNDLE_VERSION_ATTRIBUTE, version);
 
         for (Entry<String, String> attribEntry : bsn.getAttributes()
@@ -270,8 +269,13 @@ public class BundleAnalyzer implements ResourceAnalyzer {
         }
 
         caps.add(bundleBuilder.buildCapability());
-        if (allowFragments)
+        if (allowFragments && isFragment) {
+            Builder hostBuilder = new Builder()
+                    .setNamespace(Namespaces.NS_WIRING_HOST);
+            hostBuilder.addAttribute(Namespaces.NS_WIRING_HOST, bsn.getName())
+            .addAttribute(Constants.BUNDLE_VERSION_ATTRIBUTE, version);
             caps.add(hostBuilder.buildCapability());
+        }
     }
 
     private static void doBundleIdentity(Resource resource, MimeType mimeType,
@@ -641,7 +645,7 @@ public class BundleAnalyzer implements ResourceAnalyzer {
             if (mimeType == MimeType.BUNDLE || mimeType == MimeType.FRAGMENT) {
                 doBundleIdentity(resource, mimeType, capabilities);
                 doContent(resource, mimeType, capabilities);
-                doBundleAndHost(resource, capabilities);
+                doBundleAndHost(resource, mimeType, capabilities);
                 doExports(resource, capabilities);
                 doImports(resource, requirements);
                 doRequireBundles(resource, requirements);
