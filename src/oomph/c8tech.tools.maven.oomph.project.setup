@@ -123,7 +123,7 @@
     <setupTask
         xsi:type="setup:EclipseIniTask"
         option="-Doomph.redirection.c8tech.tools.maven.library.git"
-        value="=https://raw.githubusercontent.com/cvgaviao/c8tech-tools-maven-library.git/master//c8tech.tools.maven.oomph.project.setup->${git.clone.c8tech.tools.maven.library.git.location|uri}//c8tech.tools.maven.oomph.project.setup"
+        value="=https://raw.githubusercontent.com/cvgaviao/c8tech-tools-maven-library.git/master/src/oomph/c8tech.tools.maven.oomph.project.setup->${git.clone.c8tech.tools.maven.library.git.location|uri}/src/oomph/c8tech.tools.maven.oomph.project.setup"
         vm="true">
       <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
     </setupTask>
