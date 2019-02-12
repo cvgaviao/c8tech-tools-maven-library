@@ -143,7 +143,7 @@
     </setupTask>
   </stream>
   <logicalProjectContainer
-      xsi:type="setup:Project"
-      href="index:/org.eclipse.setup#//@projectCatalogs[name='com.github']/@projects[name='user.project']"/>
+      xsi:type="setup:ProjectCatalog"
+      href="https://raw.githubusercontent.com/cvgaviao/c8tech-oomph-profiles/master/c8tech.projects.catalog.setup#/"/>
   <description>C8tech Maven Library provides cool stuff.</description>
 </setup:Project>
