@@ -78,8 +78,6 @@
           key="target">
         <value>remoteURI</value>
       </detail>
-      <reference
-          href="https://raw.githubusercontent.com/cvgaviao/c8tech-oomph-profiles/master/c8tech.projects.catalog.setup#//@setupTasks.3/@setupTasks.4"/>
     </annotation>
     <description>${scope.project.label}</description>
   </setupTask>
