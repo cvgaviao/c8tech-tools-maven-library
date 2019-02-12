@@ -58,7 +58,7 @@
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
-      id="git.clone.c8tech.tools.maven.library.git"
+      id="git.clone.c8tech.tools.maven.library"
       remoteURI="cvgaviao/c8tech-tools-maven-library">
     <annotation
         source="http://www.eclipse.org/oomph/setup/InducedChoices">
@@ -85,7 +85,7 @@
       <requirement
           name="org.eclipse.sdk.feature.group"/>
       <sourceLocator
-          rootFolder="${git.clone.c8tech.tools.maven.library.git.location}"
+          rootFolder="${git.clone.c8tech.tools.maven.library.location}"
           locateNestedProjects="true"/>
       <repositoryList
           name="2019-03">
@@ -117,7 +117,7 @@
   <setupTask
       xsi:type="maven:MavenImportTask">
     <sourceLocator
-        rootFolder="${git.clone.c8tech.tools.maven.library.git.location}"
+        rootFolder="${git.clone.c8tech.tools.maven.library.location}"
         locateNestedProjects="true"/>
   </setupTask>
   <setupTask
@@ -137,13 +137,13 @@
     <setupTask
         xsi:type="setup:EclipseIniTask"
         option="-Doomph.redirection.c8tech.tools.maven.library.git"
-        value="=https://raw.githubusercontent.com/cvgaviao/c8tech-tools-maven-library.git/master//c8tech.tools.maven.oomph.project.setup->${git.clone.c8tech.tools.maven.library.git.location|uri}//c8tech.tools.maven.oomph.project.setup"
+        value="=https://raw.githubusercontent.com/cvgaviao/c8tech-tools-maven-library.git/master//c8tech.tools.maven.oomph.project.setup->${git.clone.c8tech.tools.maven.library.location|uri}//c8tech.tools.maven.oomph.project.setup"
         vm="true">
       <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
     </setupTask>
   </stream>
   <logicalProjectContainer
-      xsi:type="setup:ProjectCatalog"
-      href="index:/org.eclipse.setup#//@projectCatalogs[name='com.github']"/>
+      xsi:type="setup:Project"
+      href="index:/org.eclipse.setup#//@projectCatalogs[name='com.github']/@projects[name='user.project']"/>
   <description>C8tech Maven Library provides cool stuff.</description>
 </setup:Project>
