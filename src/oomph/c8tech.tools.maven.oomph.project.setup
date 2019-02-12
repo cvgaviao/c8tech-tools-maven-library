@@ -135,6 +135,10 @@
           value="open::"/>
     </query>
   </setupTask>
+  <setupTask
+      xsi:type="setup:RedirectionTask"
+      sourceURL="https://raw.githubusercontent.com/cvgaviao/c8tech-oomph-profiles/master/c8tech.projects.catalog.setup"
+      targetURL="platform:/resource/c8tech-oomph-profiles/src/oomph/c8tech.projects.catalog.setup"/>
   <stream name="master"
       label="Master">
     <setupTask
