@@ -78,6 +78,8 @@
           key="target">
         <value>remoteURI</value>
       </detail>
+      <reference
+          href="https://raw.githubusercontent.com/cvgaviao/c8tech-oomph-profiles/master/c8tech.projects.catalog.setup#//@setupTasks.3/@setupTasks.4"/>
     </annotation>
     <description>${scope.project.label}</description>
   </setupTask>
@@ -110,6 +112,9 @@
         <operand
             xsi:type="predicates:RepositoryPredicate"
             project="c8tech-tools-maven-library"/>
+        <operand
+            xsi:type="predicates:NamePredicate"
+            pattern="c8tech.tools.maven.(\..*)?"/>
       </predicate>
     </workingSet>
     <description>The dynamic working sets for ${scope.project.label}</description>
@@ -137,7 +142,7 @@
     <setupTask
         xsi:type="setup:EclipseIniTask"
         option="-Doomph.redirection.c8tech.tools.maven.library.git"
-        value="=https://raw.githubusercontent.com/cvgaviao/c8tech-tools-maven-library.git/master//c8tech.tools.maven.oomph.project.setup->${git.clone.c8tech.tools.maven.library.location|uri}//c8tech.tools.maven.oomph.project.setup"
+        value="=https://raw.githubusercontent.com/cvgaviao/c8tech-tools-maven-library.git/master/src/oomph/c8tech.tools.maven.oomph.project.setup->${git.clone.c8tech.tools.maven.library.location|uri}/src/oomph/c8tech.tools.maven.oomph.project.setup"
         vm="true">
       <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
     </setupTask>
