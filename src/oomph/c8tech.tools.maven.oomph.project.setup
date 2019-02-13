@@ -63,7 +63,8 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="git.clone.c8tech.tools.maven.library"
-      remoteURI="cvgaviao/c8tech-tools-maven-library">
+      remoteURI="cvgaviao/c8tech-tools-maven-library"
+      checkoutBranch="${scope.project.stream.name}">
     <annotation
         source="http://www.eclipse.org/oomph/setup/InducedChoices">
       <detail
