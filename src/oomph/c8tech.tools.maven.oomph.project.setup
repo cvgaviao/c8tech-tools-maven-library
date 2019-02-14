@@ -63,8 +63,7 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="git.clone.c8tech.tools.maven.library"
-      remoteURI="cvgaviao/c8tech-tools-maven-library"
-      checkoutBranch="${scope.project.stream.name}">
+      remoteURI="cvgaviao/c8tech-tools-maven-library">
     <annotation
         source="http://www.eclipse.org/oomph/setup/InducedChoices">
       <detail
@@ -140,6 +139,10 @@
       xsi:type="setup:RedirectionTask"
       sourceURL="https://raw.githubusercontent.com/cvgaviao/c8tech-oomph-profiles/master/c8tech.projects.catalog.setup"
       targetURL="platform:/resource/c8tech-oomph-profiles/src/oomph/c8tech.projects.catalog.setup"/>
+  <setupTask
+      xsi:type="setup:EclipseIniTask"
+      option="-Doomph.redirection.c8tech.projects"
+      value="=index:/redirectable.projects.setup->https://raw.githubusercontent.com/cvgaviao/c8tech-oomph-profiles/master/c8tech.projects.catalog.setup"/>
   <stream name="master"
       label="Master">
     <setupTask
