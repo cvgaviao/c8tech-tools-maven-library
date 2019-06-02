@@ -70,7 +70,7 @@
         <dependency>
             <groupId>org.apache.aries.subsystem</groupId>
             <artifactId>org.apache.aries.subsystem.api</artifactId>
-            <version>${version.aries.subsystems.api}</version>
+            <version>${aries.subsystems.api.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.osgi</groupId>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>org.apache.aries</groupId>
             <artifactId>org.apache.aries.util</artifactId>
-            <version>${version.aries.util}</version>
+            <version>${aries.util.version}</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>org.apache.aries.subsystem</groupId>
             <artifactId>org.apache.aries.subsystem.core</artifactId>
-            <version>${version.aries.subsystems.core}</version>
+            <version>${aries.subsystems.core.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

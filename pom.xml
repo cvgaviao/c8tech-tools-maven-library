@@ -97,11 +97,11 @@
         <mavenPluginPlugin.version>3.5.2</mavenPluginPlugin.version>
         <version.takari-plugin-test>2.9.2</version.takari-plugin-test>
         <maven.filtering.version>3.1.1</maven.filtering.version>
-        <version.slf4j>1.7.25</version.slf4j>
+        <slf4j.version>1.7.25</slf4j.version>
         <version.incrementalbuild>0.20.7</version.incrementalbuild>
-        <version.aries.subsystems.api>2.0.10</version.aries.subsystems.api>
-        <version.aries.subsystems.core>2.0.10</version.aries.subsystems.core>
-        <version.aries.util>1.1.3</version.aries.util>
+        <aries.subsystems.api.version>2.0.10</aries.subsystems.api.version>
+        <aries.subsystems.core.version>2.0.10</aries.subsystems.core.version>
+        <aries.util.version>1.1.3</aries.util.version>
         <version.pojosr>0.2.1</version.pojosr>
         <version.sisu>0.3.3</version.sisu>
 
@@ -218,7 +218,7 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>${version.slf4j}</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
@@ -250,7 +250,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>${version.slf4j}</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
