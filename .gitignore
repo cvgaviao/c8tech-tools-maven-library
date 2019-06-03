@@ -26,6 +26,7 @@ bin/
 .DS_Store
 target
 .classpath
+.factorypath
 .settings
 src-gen/
 .project
