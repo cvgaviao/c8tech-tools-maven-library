@@ -1,290 +1,301 @@
 
-<!-- ==========================================================================  -->
-<!-- Copyright © 2015-2019 Cristiano Gavião, C8 Technology ME.                         -->
-<!--                                                                             -->
-<!-- All rights reserved. This program and the accompanying materials            -->
-<!-- are made available under the terms of the Eclipse Public License v1.0       -->
-<!-- which accompanies this distribution, and is available at                    -->
-<!-- http://www.eclipse.org/legal/epl-v10.html                                   -->
-<!--                                                                             -->
-<!-- Contributors:                                                               -->
-<!-- Cristiano Gavião (cvgaviao@c8tech.com.br)- initial API and implementation   -->
-<!-- ==========================================================================  -->
+<!-- ========================================================================== -->
+<!-- Copyright © 2015-2019 Cristiano Gavião, C8 Technology ME. -->
+<!-- -->
+<!-- All rights reserved. This program and the accompanying materials -->
+<!-- are made available under the terms of the Eclipse Public License v1.0 -->
+<!-- which accompanies this distribution, and is available at -->
+<!-- http://www.eclipse.org/legal/epl-v10.html -->
+<!-- -->
+<!-- Contributors: -->
+<!-- Cristiano Gavião (cvgaviao@c8tech.com.br)- initial API and implementation -->
+<!-- ========================================================================== -->
 
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>br.com.c8tech.releng</groupId>
-        <artifactId>maven-parent-osgi</artifactId>
-        <version>7.0</version>
-    </parent>
+	<parent>
+		<groupId>br.com.c8tech.releng</groupId>
+		<artifactId>maven-parent-osgi</artifactId>
+		<version>7.0</version>
+	</parent>
 
-    <groupId>br.com.c8tech.tools</groupId>
-    <artifactId>c8tech-tools-maven-pom</artifactId>
-    <version>0.7.9-SNAPSHOT</version>
-    <name>C8Tech Tools Maven Library</name>
-    <description>
+	<groupId>br.com.c8tech.tools</groupId>
+	<artifactId>c8tech-tools-maven-pom</artifactId>
+	<version>0.7.9-SNAPSHOT</version>
+	<name>C8Tech Tools Maven Library</name>
+	<description>
         A set of components aimed to support the building of maven plugins related to Java OSGi technology.    
     </description>
-    <packaging>pom</packaging>
+	<packaging>pom</packaging>
 
-    <!-- Due a maven limitation, this MUST be replicated to all children -->
-    <url>${c8tech.project.site.url}</url>
-    <scm>
-        <connection>${c8tech.scm.connection}</connection>
-        <developerConnection>${c8tech.scm.connection.dev}</developerConnection>
-        <url>${c8tech.scm.url}</url>
-        <tag>HEAD</tag>
-    </scm>
-    <distributionManagement>
-        <site>
-            <id>${c8tech.distribution.site.id}</id>
-            <name>${c8tech.distribution.site.name}</name>
-            <url>${c8tech.distribution.site.url}</url>
-        </site>
-    </distributionManagement>
-    <!-- end of per child setting -->
+	<!-- Due a maven limitation, this MUST be replicated to all children -->
+	<url>${c8tech.project.site.url}</url>
+	<scm>
+		<connection>${c8tech.scm.connection}</connection>
+		<developerConnection>${c8tech.scm.connection.dev}</developerConnection>
+		<url>${c8tech.scm.url}</url>
+		<tag>HEAD</tag>
+	</scm>
+	<distributionManagement>
+		<site>
+			<id>${c8tech.distribution.site.id}</id>
+			<name>${c8tech.distribution.site.name}</name>
+			<url>${c8tech.distribution.site.url}</url>
+		</site>
+	</distributionManagement>
+	<!-- end of per child setting -->
 
-    <organization>
-        <name>C8 Technology ME</name>
-        <url>www.c8tech.com.br</url>
-    </organization>
+	<organization>
+		<name>C8 Technology ME</name>
+		<url>www.c8tech.com.br</url>
+	</organization>
 
-    <developers>
-        <developer>
-            <id>cvgaviao</id>
-            <name>Cristiano Gavião</name>
-            <email>cvgaviao@c8tech.com.br</email>
-            <timezone>-3</timezone>
-            <roles>
-                <role>Developer</role>
-            </roles>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<id>cvgaviao</id>
+			<name>Cristiano Gavião</name>
+			<email>cvgaviao@c8tech.com.br</email>
+			<timezone>-3</timezone>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
 
-    <modules>
-        <module>c8tech.tools.maven.library.mojo</module>
-        <module>c8tech.tools.maven.library.osgi.subsystem</module>
-        <module>c8tech.tools.maven.library.osgi.repoindex</module>
-    </modules>
+	<modules>
+		<module>c8tech.tools.maven.library.mojo</module>
+		<module>c8tech.tools.maven.library.osgi.subsystem</module>
+		<module>c8tech.tools.maven.library.osgi.repoindex</module>
+	</modules>
 
-    <licenses>
-        <license>
-            <name>Eclipse Public License v1.0</name>
-            <url>http://www.eclipse.org/legal/epl-v10.html</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+	<licenses>
+		<license>
+			<name>Eclipse Public License v1.0</name>
+			<url>http://www.eclipse.org/legal/epl-v10.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
-    <properties>
-        <!-- the current version of releng POMs used by children projects. -->
-        <!-- must be equal to this project version -->
-        <c8tech.releng.version>7.0</c8tech.releng.version>
+	<properties>
+		<!-- the current version of releng POMs used by children projects. -->
+		<!-- must be equal to this project version -->
+		<c8tech.releng.version>7.0</c8tech.releng.version>
 
-        <c8tech.scm.repo.name>c8tech-tools-maven-library</c8tech.scm.repo.name>
+		<c8tech.scm.repo.name>c8tech-tools-maven-library</c8tech.scm.repo.name>
 
-         <!-- The minimal Java compiler version-->
-        <java.version>1.8</java.version>
-        <javadocJreApiVersion>8</javadocJreApiVersion>
+		<!-- The minimal Java compiler version -->
+		<java.version>1.8</java.version>
+		<javadocJreApiVersion>8</javadocJreApiVersion>
 
-        <!-- Encoding settings-->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- Encoding settings -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 
-        <maven.version>3.5.4</maven.version>
-        <mavenPluginPlugin.version>3.5.2</mavenPluginPlugin.version>
-        <takari-plugin-test.version>2.9.2</takari-plugin-test.version>
-        <takari-lifecycle.version>1.13.9</takari-lifecycle.version>
-        <maven.filtering.version>3.1.1</maven.filtering.version>
-        <slf4j.version>1.7.25</slf4j.version>
-        <incrementalbuild.version>0.20.9</incrementalbuild.version>
-        <aries.subsystems.api.version>2.0.10</aries.subsystems.api.version>
-        <aries.subsystems.core.version>2.0.10</aries.subsystems.core.version>
-        <aries.util.version>1.1.3</aries.util.version>
-        <pojosr.version>0.2.1</pojosr.version>
-        <sisu.version>0.3.3</sisu.version>
+		<maven.version>3.5.4</maven.version>
+		<mavenPluginPlugin.version>3.5.2</mavenPluginPlugin.version>
+		<takari-plugin-test.version>2.9.2</takari-plugin-test.version>
+		<takari-lifecycle.version>1.13.9</takari-lifecycle.version>
+		<maven.filtering.version>3.1.1</maven.filtering.version>
+		<slf4j.version>1.7.25</slf4j.version>
+		<incrementalbuild.version>0.20.9</incrementalbuild.version>
+		<aries.subsystems.api.version>2.0.10</aries.subsystems.api.version>
+		<aries.subsystems.core.version>2.0.10</aries.subsystems.core.version>
+		<aries.util.version>1.1.3</aries.util.version>
+		<pojosr.version>0.2.1</pojosr.version>
+		<sisu.version>0.3.3</sisu.version>
 
-        <osgi.core.version>6.0.0</osgi.core.version>
-        <osgi.cmpn.version>${osgi.core.version}</osgi.cmpn.version>
-        <osgi.annotation.version>6.0.1</osgi.annotation.version>
+		<osgi.core.version>6.0.0</osgi.core.version>
+		<osgi.cmpn.version>${osgi.core.version}</osgi.cmpn.version>
+		<osgi.annotation.version>6.0.1</osgi.annotation.version>
 
-    </properties>
+	</properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- Build Avoidance -->
-            <dependency>
-                <groupId>io.takari</groupId>
-                <artifactId>incrementalbuild</artifactId>
-                <version>${incrementalbuild.version}</version>
-            </dependency>
+	<dependencyManagement>
+		<dependencies>
+			<!-- Build Avoidance -->
+			<dependency>
+				<groupId>io.takari</groupId>
+				<artifactId>incrementalbuild</artifactId>
+				<version>${incrementalbuild.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>org.apache.maven.shared</groupId>
-                <artifactId>maven-shared-utils</artifactId>
-                <version>3.2.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-plugin-api</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-resolver-provider</artifactId>
-                <version>${maven.version}</version>
-                <scope>provided</scope>
-            </dependency>
-                        <!-- test-properties -->
-            <dependency>
-                <groupId>io.takari.maven.plugins</groupId>
-                <artifactId>takari-plugin-testing</artifactId>
-                <version>${takari-plugin-test.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.takari.maven.plugins</groupId>
-                <artifactId>takari-plugin-integration-testing</artifactId>
-                <version>${takari-plugin-test.version}</version>
-                <type>pom</type>
-                <scope>test</scope>
-            </dependency>
+			<dependency>
+				<groupId>org.apache.maven.shared</groupId>
+				<artifactId>maven-shared-utils</artifactId>
+				<version>3.2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-plugin-api</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-resolver-provider</artifactId>
+				<version>${maven.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- test-properties -->
+			<dependency>
+				<groupId>io.takari.maven.plugins</groupId>
+				<artifactId>takari-plugin-testing</artifactId>
+				<version>${takari-plugin-test.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.takari.maven.plugins</groupId>
+				<artifactId>takari-plugin-integration-testing</artifactId>
+				<version>${takari-plugin-test.version}</version>
+				<type>pom</type>
+				<scope>test</scope>
+			</dependency>
 
-            <dependency>
-                <groupId>org.apache.maven.shared</groupId>
-                <artifactId>maven-filtering</artifactId>
-                <version>${maven.filtering.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven.plugin-tools</groupId>
-                <artifactId>maven-plugin-annotations</artifactId>
-                <version>${mavenPluginPlugin.version}</version>
-                <!-- annotations are not needed for plugin execution so you
-                    can remove this dependency for execution using provided scope -->
-                <!-- <scope>provided</scope> -->
-                <exclusions>
-                    <exclusion>
-                        <artifactId>maven-artifact</artifactId>
-                        <groupId>org.apache.maven</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-core</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-compat</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-model</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-model-builder</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-artifact</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-settings</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.codehaus.plexus</groupId>
-                <artifactId>plexus-archiver</artifactId>
-                <version>3.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-compress</artifactId>
-                <version>${commons-compress.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.takari</groupId>
-                <artifactId>takari-hash</artifactId>
-                <version>0.0.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>osgi.core</artifactId>
-                <version>${osgi.core.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>osgi.annotation</artifactId>
-                <version>${osgi.annotation.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>osgi.cmpn</artifactId>
-                <version>${osgi.cmpn.version}</version>
-                <scope>provided</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+			<dependency>
+				<groupId>org.apache.maven.shared</groupId>
+				<artifactId>maven-filtering</artifactId>
+				<version>${maven.filtering.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugin-tools</groupId>
+				<artifactId>maven-plugin-annotations</artifactId>
+				<version>${mavenPluginPlugin.version}</version>
+				<!-- annotations are not needed for plugin execution so you can remove 
+					this dependency for execution using provided scope -->
+				<!-- <scope>provided</scope> -->
+				<exclusions>
+					<exclusion>
+						<artifactId>maven-artifact</artifactId>
+						<groupId>org.apache.maven</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-core</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-compat</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-model</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-model-builder</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-artifact</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-settings</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.plexus</groupId>
+				<artifactId>plexus-archiver</artifactId>
+				<version>3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-compress</artifactId>
+				<version>${commons-compress.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.takari</groupId>
+				<artifactId>takari-hash</artifactId>
+				<version>0.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.core</artifactId>
+				<version>${osgi.core.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.annotation</artifactId>
+				<version>${osgi.annotation.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.cmpn</artifactId>
+				<version>${osgi.cmpn.version}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>animal-sniffer-maven-plugin</artifactId>
-                    <version>${maven-animal-sniffer.version}</version>
-                    <configuration>
-                        <ignores>
-                            <ignore>com.c8tech.tools.maven.lib.mojo.incremental.DefaultBuildContextForURL</ignore>
-                            <ignore>sun.net.www.protocol.file.FileURLConnection</ignore>
-                        </ignores>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>io.takari.maven.plugins</groupId>
-                    <artifactId>takari-lifecycle-plugin</artifactId>
-                    <version>${takari-lifecycle.version}</version>
-                    <extensions>true</extensions>
-                    <inherited>true</inherited>
-                    <configuration>
-                        <proc>none</proc>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                        <accessRulesViolation>error</accessRulesViolation>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>animal-sniffer-maven-plugin</artifactId>
+					<version>${maven-animal-sniffer.version}</version>
+					<configuration>
+						<ignores>
+							<ignore>com.c8tech.tools.maven.lib.mojo.incremental.DefaultBuildContextForURL</ignore>
+							<ignore>sun.net.www.protocol.file.FileURLConnection</ignore>
+						</ignores>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler.version}</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<release>1.8</release>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>io.takari.maven.plugins</groupId>
+					<artifactId>takari-lifecycle-plugin</artifactId>
+					<version>${takari-lifecycle.version}</version>
+					<extensions>true</extensions>
+					<inherited>true</inherited>
+					<configuration>
+						<proc>none</proc>
+						<source>1.8</source>
+						<target>1.8</target>
+						<accessRulesViolation>error</accessRulesViolation>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
