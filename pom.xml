@@ -17,7 +17,7 @@
     <parent>
         <groupId>br.com.c8tech.releng</groupId>
         <artifactId>maven-parent-osgi</artifactId>
-        <version>6.0</version>
+        <version>7.0</version>
     </parent>
 
     <groupId>br.com.c8tech.tools</groupId>
@@ -80,7 +80,7 @@
     <properties>
         <!-- the current version of releng POMs used by children projects. -->
         <!-- must be equal to this project version -->
-        <version.c8tech.releng>6.0</version.c8tech.releng>
+        <c8tech.releng.version>7.0</c8tech.releng.version>
 
         <c8tech.scm.repo.name>c8tech-tools-maven-library</c8tech.scm.repo.name>
 
@@ -95,19 +95,20 @@
 
         <maven.version>3.5.4</maven.version>
         <mavenPluginPlugin.version>3.5.2</mavenPluginPlugin.version>
-        <version.takari-plugin-test>2.9.2</version.takari-plugin-test>
+        <takari-plugin-test.version>2.9.2</takari-plugin-test.version>
+        <takari-lifecycle.version>1.13.9</takari-lifecycle.version>
         <maven.filtering.version>3.1.1</maven.filtering.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <version.incrementalbuild>0.20.7</version.incrementalbuild>
+        <incrementalbuild.version>0.20.9</incrementalbuild.version>
         <aries.subsystems.api.version>2.0.10</aries.subsystems.api.version>
         <aries.subsystems.core.version>2.0.10</aries.subsystems.core.version>
         <aries.util.version>1.1.3</aries.util.version>
-        <version.pojosr>0.2.1</version.pojosr>
-        <version.sisu>0.3.3</version.sisu>
+        <pojosr.version>0.2.1</pojosr.version>
+        <sisu.version>0.3.3</sisu.version>
 
-        <version.osgi.core>6.0.0</version.osgi.core>
-        <version.osgi.cmpn>${version.osgi.core}</version.osgi.cmpn>
-        <version.osgi.annotation>6.0.1</version.osgi.annotation>
+        <osgi.core.version>6.0.0</osgi.core.version>
+        <osgi.cmpn.version>${osgi.core.version}</osgi.cmpn.version>
+        <osgi.annotation.version>6.0.1</osgi.annotation.version>
 
     </properties>
 
@@ -117,7 +118,7 @@
             <dependency>
                 <groupId>io.takari</groupId>
                 <artifactId>incrementalbuild</artifactId>
-                <version>${version.incrementalbuild}</version>
+                <version>${incrementalbuild.version}</version>
             </dependency>
 
             <dependency>
@@ -140,13 +141,13 @@
             <dependency>
                 <groupId>io.takari.maven.plugins</groupId>
                 <artifactId>takari-plugin-testing</artifactId>
-                <version>${version.takari-plugin-test}</version>
+                <version>${takari-plugin-test.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.takari.maven.plugins</groupId>
                 <artifactId>takari-plugin-integration-testing</artifactId>
-                <version>${version.takari-plugin-test}</version>
+                <version>${takari-plugin-test.version}</version>
                 <type>pom</type>
                 <scope>test</scope>
             </dependency>
@@ -208,7 +209,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-compress</artifactId>
-                <version>${version.commons-compress}</version>
+                <version>${commons-compress.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.takari</groupId>
@@ -223,19 +224,19 @@
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>osgi.core</artifactId>
-                <version>${version.osgi.core}</version>
+                <version>${osgi.core.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>osgi.annotation</artifactId>
-                <version>${version.osgi.annotation}</version>
+                <version>${osgi.annotation.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>osgi.cmpn</artifactId>
-                <version>${version.osgi.cmpn}</version>
+                <version>${osgi.cmpn.version}</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>
@@ -261,7 +262,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>animal-sniffer-maven-plugin</artifactId>
-                    <version>${version.maven-animal-sniffer}</version>
+                    <version>${maven-animal-sniffer.version}</version>
                     <configuration>
                         <ignores>
                             <ignore>com.c8tech.tools.maven.lib.mojo.incremental.DefaultBuildContextForURL</ignore>
@@ -272,7 +273,7 @@
                 <plugin>
                     <groupId>io.takari.maven.plugins</groupId>
                     <artifactId>takari-lifecycle-plugin</artifactId>
-                    <version>${version.takari-lifecycle}</version>
+                    <version>${takari-lifecycle.version}</version>
                     <extensions>true</extensions>
                     <inherited>true</inherited>
                     <configuration>
