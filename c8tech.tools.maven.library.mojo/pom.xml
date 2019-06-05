@@ -1,171 +1,105 @@
 
-<!-- ==========================================================================  -->
-<!-- Copyright © 2015-2019 Cristiano Gavião, C8 Technology ME.                         -->
-<!--                                                                             -->
-<!-- All rights reserved. This program and the accompanying materials            -->
-<!-- are made available under the terms of the Eclipse Public License v1.0       -->
-<!-- which accompanies this distribution, and is available at                    -->
-<!-- http://www.eclipse.org/legal/epl-v10.html                                   -->
-<!--                                                                             -->
-<!-- Contributors:                                                               -->
-<!-- Cristiano Gavião (cvgaviao@c8tech.com.br)- initial API and implementation   -->
-<!-- ==========================================================================  -->
+<!-- ========================================================================== -->
+<!-- Copyright © 2015-2019 Cristiano Gavião, C8 Technology ME. -->
+<!-- -->
+<!-- All rights reserved. This program and the accompanying materials -->
+<!-- are made available under the terms of the Eclipse Public License v1.0 -->
+<!-- which accompanies this distribution, and is available at -->
+<!-- http://www.eclipse.org/legal/epl-v10.html -->
+<!-- -->
+<!-- Contributors: -->
+<!-- Cristiano Gavião (cvgaviao@c8tech.com.br)- initial API and implementation -->
+<!-- ========================================================================== -->
 
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>br.com.c8tech.tools</groupId>
-        <artifactId>c8tech-tools-maven-pom</artifactId>
-        <version>0.8.1-SNAPSHOT</version>
-    </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>br.com.c8tech.tools</groupId>
+		<artifactId>c8tech-tools-maven-pom</artifactId>
+		<version>0.8.1-SNAPSHOT</version>
+	</parent>
 
-    <artifactId>c8tech.tools.maven.library.mojo</artifactId>
-    <name>Mojo Development Supporting Library</name>
-    <description>A maven component library providing classes to support the development of Maven Plugins.</description>
-    <packaging>takari-jar</packaging>
+	<artifactId>c8tech.tools.maven.library.mojo</artifactId>
+	<name>Mojo Development Supporting Library</name>
+	<description>A maven component library providing classes to support the development of Maven Plugins.</description>
 
-    <!-- Due a maven limitation, this MUST be replicated to all children -->
-    <url>${c8tech.project.site.url}</url>
-    <scm>
-        <connection>${c8tech.scm.connection}</connection>
-        <developerConnection>${c8tech.scm.connection.dev}</developerConnection>
-        <url>${c8tech.scm.url}</url>
-        <tag>HEAD</tag>
-    </scm>
-    <distributionManagement>
-        <site>
-            <id>${c8tech.distribution.site.id}</id>
-            <name>${c8tech.distribution.site.name}</name>
-            <url>${c8tech.distribution.site.url}</url>
-        </site>
-    </distributionManagement>
-    <!-- end of per child setting -->
+	<!-- Due a maven limitation, this MUST be replicated to all children -->
+	<url>${c8tech.project.site.url}</url>
+	<scm>
+		<connection>${c8tech.scm.connection}</connection>
+		<developerConnection>${c8tech.scm.connection.dev}</developerConnection>
+		<url>${c8tech.scm.url}</url>
+		<tag>HEAD</tag>
+	</scm>
+	<distributionManagement>
+		<site>
+			<id>${c8tech.distribution.site.id}</id>
+			<name>${c8tech.distribution.site.name}</name>
+			<url>${c8tech.distribution.site.url}</url>
+		</site>
+	</distributionManagement>
+	<!-- end of per child setting -->
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-plugin-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-artifact</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-resolver-provider</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-model</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.takari</groupId>
-            <artifactId>incrementalbuild</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugin-tools</groupId>
-            <artifactId>maven-plugin-annotations</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-archiver</artifactId>
-            
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.shared</groupId>
-            <artifactId>maven-artifact-transfer</artifactId>
-            <version>0.9.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.sonatype.sisu</groupId>
-                    <artifactId>sisu-inject-plexus</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-<!--         <dependency> -->
-<!--             <groupId>com.google.guava</groupId> -->
-<!--             <artifactId>guava</artifactId> -->
-<!--             <version>20.0</version> -->
-<!--             <scope>provided</scope> -->
-<!--         </dependency> -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.codehaus.plexus</groupId>
+				<artifactId>plexus-archiver</artifactId>
+				<version>4.1.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>io.takari.maven.plugins</groupId>
-                <artifactId>takari-lifecycle-plugin</artifactId>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <id>default-plugin-descriptor</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>plugin-descriptor</goal>
-                        </goals>
-                        <configuration>
-                            <debug>true</debug>
-                            <proc>none</proc>
-                            <compilerId>jdt</compilerId>
-                            <source>1.8</source>
-                            <target>1.8</target>
-                            <sourceJar>true</sourceJar>
-                            <testJar>true</testJar>
-                            <accessRulesViolation>error</accessRulesViolation>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>default-sisu-index</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>sisu-index</goal>
-                        </goals>
-                        <configuration>
-                            <debug>true</debug>
-                            <proc>none</proc>
-                            <compilerId>jdt</compilerId>
-                            <source>1.8</source>
-                            <target>1.8</target>
-                            <sourceJar>true</sourceJar>
-                            <testJar>true</testJar>
-                            <accessRulesViolation>error</accessRulesViolation>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>default-mojo-annotation-processor</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>mojo-annotation-processor</goal>
-                        </goals>
-                        <configuration>
-                            <debug>true</debug>
-                            <proc>none</proc>
-                            <compilerId>jdt</compilerId>
-                            <source>1.8</source>
-                            <target>1.8</target>
-                            <sourceJar>true</sourceJar>
-                            <testJar>true</testJar>
-                            <accessRulesViolation>error</accessRulesViolation>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>default-deploy</id>
-                        <phase>none</phase>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+	<dependencies>
+		<dependency>
+			<groupId>org.codehaus.plexus</groupId>
+			<artifactId>plexus-archiver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.shared</groupId>
+			<artifactId>maven-artifact-transfer</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.sonatype.sisu</groupId>
+					<artifactId>sisu-inject-plexus</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.takari</groupId>
+			<artifactId>incrementalbuild</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-tools</groupId>
+			<artifactId>maven-plugin-annotations</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.sisu</groupId>
+				<artifactId>sisu-maven-plugin</artifactId>
+				<version>0.3.3</version>
+				<executions>
+					<execution>
+						<id>generate-index</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>main-index</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

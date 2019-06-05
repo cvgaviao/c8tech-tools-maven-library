@@ -62,14 +62,12 @@ import br.com.c8tech.tools.maven.osgi.lib.mojo.handlers.DefaultExtendedArtifactH
 import br.com.c8tech.tools.maven.osgi.lib.mojo.handlers.ExtendedArtifactHandler;
 import br.com.c8tech.tools.maven.osgi.lib.mojo.incremental.URLResourceBySizeHolder;
 import br.com.c8tech.tools.maven.osgi.lib.mojo.services.DependenciesHelper;
-import sun.net.www.protocol.file.FileURLConnection; // NOSONAR
 
 /**
  *
  * @author cvgaviao
  *
  */
-@SuppressWarnings("restriction")
 @Named
 @Singleton
 public class DefaultDependenciesHelper implements DependenciesHelper {
@@ -166,15 +164,11 @@ public class DefaultDependenciesHelper implements DependenciesHelper {
                 return isResourcePresentOnWebServer(
                         (HttpURLConnection) connection);
             } else
-                if (connection instanceof FileURLConnection) {
-                    ((FileURLConnection) connection).close();
-                    return isFilePresent(resourceURL);
-                }
+                return isFilePresent(resourceURL);
         } catch (IOException exception) {
             LOG.debug("Resource wasn't found " + resourceURL, exception);
             return false;
         }
-        return false;
     }
 
     @Override

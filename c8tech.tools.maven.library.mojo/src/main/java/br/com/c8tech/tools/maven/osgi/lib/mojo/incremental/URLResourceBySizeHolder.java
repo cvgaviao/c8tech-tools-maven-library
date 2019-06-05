@@ -28,9 +28,7 @@ import org.slf4j.LoggerFactory;
 import io.takari.incrementalbuild.ResourceStatus;
 import io.takari.incrementalbuild.spi.ResourceHolder;
 import io.takari.incrementalbuild.util.URLResourceHolder;
-import sun.net.www.protocol.file.FileURLConnection; // NOSONAR
 
-@SuppressWarnings("restriction")
 public class URLResourceBySizeHolder implements ResourceHolder<URL> {
 
     private static final Logger LOG = LoggerFactory
@@ -64,13 +62,12 @@ public class URLResourceBySizeHolder implements ResourceHolder<URL> {
             digest.update(lastModifiedDate.getBytes());
             resourceSize = Long.toString(httpCon.getContentLengthLong());
             digest.update(resourceSize.getBytes());
-        } else
-            if (connection instanceof FileURLConnection) {
-                lastModifiedDate = Long.toString(connection.getLastModified());
-                digest.update(lastModifiedDate.getBytes());
-                resourceSize = Long.toString(connection.getContentLengthLong());
-                digest.update(resourceSize.getBytes());
-            }
+        } else {
+            lastModifiedDate = Long.toString(connection.getLastModified());
+            digest.update(lastModifiedDate.getBytes());
+            resourceSize = Long.toString(connection.getContentLengthLong());
+            digest.update(resourceSize.getBytes());
+        }
         return digest.digest();
     }
 
