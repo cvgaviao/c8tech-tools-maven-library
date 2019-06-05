@@ -24,9 +24,7 @@
 <!-- Cristiano Gavião (cvgaviao@c8tech.com.br)- initial API and implementation -->
 <!-- ========================================================================== -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -37,7 +35,7 @@
 
 	<groupId>br.com.c8tech.tools</groupId>
 	<artifactId>c8tech-tools-maven-pom</artifactId>
-	<version>0.8.1-SNAPSHOT</version>
+	<version>0.9.0</version>
 	<name>C8Tech Tools Maven Library</name>
 	<description>
         A set of components aimed to support the building of maven plugins related to Java OSGi technology.    
@@ -50,7 +48,7 @@
 		<connection>${c8tech.scm.connection}</connection>
 		<developerConnection>${c8tech.scm.connection.dev}</developerConnection>
 		<url>${c8tech.scm.url}</url>
-		<tag>HEAD</tag>
+		<tag>v0.9.0</tag>
 	</scm>
 	<distributionManagement>
 		<site>
@@ -301,7 +299,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -322,7 +320,7 @@
 									</pluginExecutionFilter>
 									<action>
 										<execute>
-											<runOnConfiguration></runOnConfiguration>
+											<runOnConfiguration />
 										</execute>
 									</action>
 								</pluginExecution>
@@ -339,7 +337,7 @@
 									</pluginExecutionFilter>
 									<action>
 										<execute>
-											<runOnConfiguration></runOnConfiguration>
+											<runOnConfiguration />
 										</execute>
 									</action>
 								</pluginExecution>
