@@ -96,13 +96,5 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-
-		<plugins>
-			<plugin>
-				<groupId>io.takari.maven.plugins</groupId>
-				<artifactId>takari-lifecycle-plugin</artifactId>
-				<extensions>true</extensions>
-			</plugin>
-		</plugins>
 	</build>
 </project>
