@@ -33,7 +33,6 @@ src-gen/
 /META-INF/
 /OSGI-INF/
 dev/
-license-header.txt
 
 pom.xml.releaseBackup*
 /release.properties
