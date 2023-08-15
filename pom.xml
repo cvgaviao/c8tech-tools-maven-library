@@ -91,7 +91,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 
-		<maven.version>3.6.0</maven.version>
+		<maven.version>3.8.1</maven.version>
 		<mavenPluginPlugin.version>3.6.0</mavenPluginPlugin.version>
 		<maven-artifact-transfer.version>0.11.0</maven-artifact-transfer.version>
 		<takari-plugin-test.version>2.9.2</takari-plugin-test.version>
